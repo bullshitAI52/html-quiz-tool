@@ -3416,62 +3416,19 @@
             },
 
             // 重置题库
+            // 重置题库 - 彻底清空
             resetLibrary() {
-                if (this.data.libraries.length === 0) {
-                    alert('没有可重置的题库');
-                    return;
-                }
+                if (confirm('确定要清空所有题库并恢复到初始状态吗？此操作无法撤销。')) {
+                    // 1. 清空所有题库数据
+                    this.data.libraries = [];
+                    this.data.currentLibraryId = null;
 
-                const currentLibrary = this.getCurrentLibrary();
-                if (!currentLibrary.name || currentLibrary.questions.length === 0) {
-                    alert('当前题库没有题目可重置');
-                    return;
-                }
+                    // 2. 清除 localStorage 中的相关数据
+                    localStorage.removeItem(this.STORAGE_KEY);
 
-                if (confirm(`确定要重置题库 "${currentLibrary.name}" 吗？这将清除所有用户答案、练习错题库和考试错题库并恢复到初始状态。`)) {
-                    const originalLibrary = JSON.parse(JSON.stringify(this.data.libraries[this.data.currentLibraryIndex]));
-                    delete originalLibrary.userAnswers;
-                    delete originalLibrary.originalOrder;
-
-                    this.data.libraries[this.data.currentLibraryIndex] = {
-                        name: originalLibrary.name,
-                        questions: JSON.parse(JSON.stringify(originalLibrary.questions)),
-                        userAnswers: {},
-                        originalOrder: []
-                    };
-
-                    // 重置练习错题库
-                    this.data.practiceWrongQuestions = [];
-                    this.data.practiceWrongCurrentIndex = 0;
-
-                    // 重置考试错题库
-                    this.data.examWrongQuestions = [];
-                    this.data.examWrongCurrentIndex = 0;
-
-                    // 重置考试历史记录中的错题数据
-                    this.data.examHistory.forEach(record => {
-                        if (record.wrongQuestions) {
-                            record.wrongQuestions = [];
-                        }
-                    });
-
-                    this.data.currentIndex = 0;
-                    this.data.mode = 'practice';
-                    this.data.isShuffled = false;
-
-                    this.saveToStorage();
-                    this.updateUI();
-
-                    // 如果当前在错题库标签页，刷新显示
-                    if (this.data.currentTab === 'practice-wrong') {
-                        this.updatePracticeWrongQuestions();
-                        this.updatePracticeWrongUI();
-                    } else if (this.data.currentTab === 'exam-wrong') {
-                        this.updateExamWrongQuestions();
-                        this.updateExamWrongUI();
-                    }
-
-                    alert('题库已重置，包括练习错题库和考试错题库');
+                    // 3. 重新加载页面，恢复到初始状态
+                    alert('已清空所有题库，页面将刷新。');
+                    location.reload();
                 }
             },
 
