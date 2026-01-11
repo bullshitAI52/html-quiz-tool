@@ -61,10 +61,12 @@ export function updateUI() {
     }
 
     // Tabs visibility
+    // Tabs visibility
     document.getElementById('practice-tab').classList.toggle('hidden', state.currentTab !== 'practice');
     document.getElementById('exam-tab').classList.toggle('hidden', state.currentTab !== 'exam');
-    document.getElementById('wrong-tab').classList.toggle('hidden', state.currentTab !== 'wrong');
-    document.getElementById('settings-tab').classList.toggle('hidden', state.currentTab !== 'settings');
+    document.getElementById('practice-wrong-tab').classList.toggle('hidden', state.currentTab !== 'practice-wrong');
+    document.getElementById('exam-wrong-tab').classList.toggle('hidden', state.currentTab !== 'exam-wrong');
+    document.getElementById('exam-stats-tab').classList.toggle('hidden', state.currentTab !== 'exam-stats');
 
     // Tab active state
     document.querySelectorAll('.tab').forEach(t => {
@@ -354,9 +356,9 @@ function renderPracticeSidebar() {
     });
 
     // Actually, simply iterating all questions and appending to respective container is easier.
-    const sGrid = document.getElementById('single-grid');
-    const mGrid = document.getElementById('multi-grid');
-    const jGrid = document.getElementById('judge-grid');
+    const sGrid = document.getElementById('practice-single-grid');
+    const mGrid = document.getElementById('practice-multi-grid');
+    const jGrid = document.getElementById('practice-judge-grid');
 
     if (sGrid) sGrid.innerHTML = '';
     if (mGrid) mGrid.innerHTML = '';
@@ -643,9 +645,9 @@ export function updateExamQuestionNumberStyles() {
     // We need to render them first if empty?
     // Let's implement full render for safety.
 
-    const sGrid = document.getElementById('exam-single-grid');
-    const mGrid = document.getElementById('exam-multi-grid');
-    const jGrid = document.getElementById('exam-judge-grid');
+    const sGrid = document.getElementById('single-choice-grid');
+    const mGrid = document.getElementById('multi-choice-grid');
+    const jGrid = document.getElementById('judge-grid');
 
     if (sGrid && sGrid.innerHTML === '') { // Only generate if empty? 
         // No, we should probably regenerate or check.

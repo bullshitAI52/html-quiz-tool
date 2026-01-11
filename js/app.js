@@ -166,7 +166,7 @@ window.quizApp = {
         });
 
         // Import
-        document.getElementById('file-input')?.addEventListener('change', (e) => {
+        document.getElementById('fileInput')?.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
@@ -279,21 +279,20 @@ window.quizApp = {
         });
 
         // Wrong Question Navigation
-        document.getElementById('prev-practice-wrong-btn')?.addEventListener('click', () => {
+        document.getElementById('practice-wrong-prevButton')?.addEventListener('click', () => {
             if (Logic.prevPracticeWrongQuestion()) UI.updatePracticeWrongUI();
             else alert('已经是第一题了');
         });
-        // ... (Next, PrevExamWrong, NextExamWrong)
-        document.getElementById('next-practice-wrong-btn')?.addEventListener('click', () => {
+        document.getElementById('practice-wrong-nextButton')?.addEventListener('click', () => {
             if (Logic.nextPracticeWrongQuestion()) UI.updatePracticeWrongUI();
             else alert('已经是最后一题了');
         });
 
-        document.getElementById('prev-exam-wrong-btn')?.addEventListener('click', () => {
+        document.getElementById('exam-wrong-prevButton')?.addEventListener('click', () => {
             if (Logic.prevExamWrongQuestion()) UI.updateExamWrongUI();
             else alert('已经是第一题了');
         });
-        document.getElementById('next-exam-wrong-btn')?.addEventListener('click', () => {
+        document.getElementById('exam-wrong-nextButton')?.addEventListener('click', () => {
             if (Logic.nextExamWrongQuestion()) UI.updateExamWrongUI();
             else alert('已经是最后一题了');
         });
