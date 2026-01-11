@@ -167,21 +167,31 @@ window.quizApp = {
 
         // Import
         document.getElementById('importButton')?.addEventListener('click', () => {
-            document.getElementById('fileInput').click();
+            // alert('Import button clicked'); // Debug
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) fileInput.click();
+            else alert('Error: File input element not found!');
         });
 
         document.getElementById('fileInput')?.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
+            // alert('File selected: ' + file.name); // Debug
+
+            if (!window.XLSX) {
+                alert('Error: XLSX library not loaded. Please check your internet connection.');
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
+                    const workbook = window.XLSX.read(data, { type: 'array' });
                     const sheetName = workbook.SheetNames[0];
                     const worksheet = workbook.Sheets[sheetName];
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                    const jsonData = window.XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
                     // Create Library logic
                     const newLibrary = {
@@ -207,16 +217,24 @@ window.quizApp = {
                         originalOrder: []
                     };
 
+                    if (newLibrary.questions.length === 0) {
+                        alert('Error: No valid questions found in the Excel file.');
+                        return;
+                    }
+
                     state.libraries.push(newLibrary);
                     state.currentLibraryIndex = state.libraries.length - 1;
                     state.currentIndex = 0;
                     Storage.saveToStorage();
                     UI.updateUI();
-                    alert('导入成功');
+                    alert(`成功导入 ${newLibrary.questions.length} 道题目`);
                 } catch (error) {
-                    alert('导入失败，请检查文件格式是否正确');
+                    alert('导入失败: ' + error.message);
                     console.error(error);
                 }
+            };
+            reader.onerror = (err) => {
+                alert('Error reading file');
             };
             reader.readAsArrayBuffer(file);
         });
