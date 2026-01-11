@@ -60,6 +60,13 @@ export function updateUI() {
         updateStatsDisplay();
     }
 
+    // Update Mode Button Text
+    const modeBtn = document.getElementById('modeButton');
+    if (modeBtn) {
+        modeBtn.textContent = state.mode === 'back' ? '切换到练习模式' : '切换到背题模式';
+        modeBtn.className = state.mode === 'back' ? 'button button-primary' : 'button button-warning';
+    }
+
     // Tabs visibility
     // Tabs visibility
     document.getElementById('practice-tab').classList.toggle('hidden', state.currentTab !== 'practice');
@@ -116,7 +123,7 @@ export function renderQuestion() {
     let question;
     let modeClass = '';
 
-    if (state.mode === 'practice') {
+    if (state.mode === 'practice' || state.mode === 'back') {
         question = getCurrentLibrary().questions[state.currentIndex];
     } else if (state.mode === 'exam') {
         question = state.examQuestions[state.currentIndex];
@@ -284,7 +291,7 @@ export function renderAnswerAndExplanation() {
 
     // Show if submitted or 'back' mode (if we implemented back mode, but removing/sticking to practice for now)
     // Logic: Show if answered.
-    const show = answer && answer.isSubmitted;
+    const show = (answer && answer.isSubmitted) || state.mode === 'back';
 
     if (show) {
         container.classList.remove('hidden');

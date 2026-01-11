@@ -251,11 +251,13 @@ window.quizApp = {
 
                 // Logic based on tab
                 if (tabName === 'exam' && !state.examStarted) {
-                    // refresh history?
                     UI.renderExamHistory();
-                } else if (tabName === 'wrong') {
+                } else if (tabName === 'practice-wrong') {
                     Logic.generatePracticeWrongQuestions();
+                } else if (tabName === 'exam-wrong') {
                     Logic.generateExamWrongQuestions();
+                } else if (tabName === 'exam-stats') {
+                    UI.renderExamHistory();
                 }
 
                 Storage.saveToStorage();
