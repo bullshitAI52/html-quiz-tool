@@ -85,18 +85,14 @@ export function updateUI() {
         } else {
             document.getElementById('exam-start-container').classList.remove('hidden');
             document.getElementById('exam-layout').classList.add('hidden');
-
-            // Exam History
-            renderExamHistory();
+            // updateExamStats? No, stats is separate tab now.
         }
-    } else if (state.currentTab === 'wrong') {
-        // Assume default wrong tab view is practice wrong questions?
-        // Actually the wrong tab has sub-tabs or sidebar?
-        // Let's check updateUI logic in index.html for Wrong tab.
-        // It updates `practiceWrongUI` or `examWrongUI` based on sub-selection often.
-        // But here we'll just ensure the containers are correct.
+    } else if (state.currentTab === 'practice-wrong') {
         updatePracticeWrongUI();
+    } else if (state.currentTab === 'exam-wrong') {
         updateExamWrongUI();
+    } else if (state.currentTab === 'exam-stats') {
+        renderExamHistory();
     }
 }
 

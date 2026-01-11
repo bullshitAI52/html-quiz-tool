@@ -166,6 +166,10 @@ window.quizApp = {
         });
 
         // Import
+        document.getElementById('importButton')?.addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
         document.getElementById('fileInput')?.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
