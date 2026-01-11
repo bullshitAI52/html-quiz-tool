@@ -10,37 +10,57 @@
             --correct-color: #4CAF50;
             --wrong-color: #f44336;
             --primary-color: #2196F3;
-            --light-bg: #f5f5f5;
-            --dark-bg: #333;
             --warning-color: #FF9800;
             --success-color: #4CAF50;
             --info-color: #2196F3;
             --question-font-size: 12px;
             --option-font-size: 12px;
+
+            /* Theme Variables - Light Mode Default */
+            --bg-color: #f5f5f5;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            --item-hover-bg: #e0e0e0;
+            --header-bg: linear-gradient(135deg, #333, #555);
+        }
+
+        /* Dark Mode Overrides */
+        .dark-mode {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --item-hover-bg: #333333;
+            --header-bg: linear-gradient(135deg, #000, #222);
+            --light-bg: #2d2d2d;
+            /* Replaces old light-bg usage where appropriate */
         }
 
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
             font-size: var(--question-font-size);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         #app {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: var(--container-bg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             min-height: 100vh;
             box-sizing: border-box;
+            transition: background-color 0.3s;
         }
 
         #header {
-            background: linear-gradient(135deg, var(--dark-bg), #555);
+            background: var(--header-bg);
             color: white;
             padding: 7px 10px;
             border-radius: 8px 8px 0 0;
@@ -62,7 +82,7 @@
             align-items: center;
             margin-bottom: 20px;
             padding: 15px;
-            background-color: white;
+            background-color: var(--container-bg);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
@@ -81,7 +101,7 @@
 
         .library-item {
             padding: 8px 15px;
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s;
@@ -92,7 +112,7 @@
         }
 
         .library-item:hover {
-            background-color: #e0e0e0;
+            background-color: var(--item-hover-bg);
         }
 
         .library-item.active {
@@ -101,7 +121,7 @@
         }
 
         .library-count {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(128, 128, 128, 0.3);
             padding: 2px 6px;
             border-radius: 10px;
             font-size: 0.8rem;
@@ -128,7 +148,7 @@
         }
 
         #question-container {
-            background-color: white;
+            background-color: var(--container-bg);
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -188,7 +208,7 @@
             /* 高度缩小50% */
             margin: 4px 0;
             /* 间距缩小50% */
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             border: none;
             border-left: 4px solid transparent;
             border-radius: 8px;
@@ -198,7 +218,7 @@
         }
 
         .option:hover {
-            background-color: #e0e0e0;
+            background-color: var(--item-hover-bg);
             transform: translateY(-2px);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -209,11 +229,12 @@
             height: 28px;
             line-height: 28px;
             text-align: center;
-            background-color: #ddd;
+            background-color: var(--border-color);
             border-radius: 50%;
             margin-right: 12px;
             font-weight: bold;
             flex-shrink: 0;
+            color: #555;
         }
 
         /* 正确答案样式 - 绿色 */
@@ -242,14 +263,14 @@
 
         /* 背题模式下的选项样式 */
         .back-mode-option {
-            background-color: white;
+            background-color: var(--container-bg);
             cursor: default;
         }
 
         #answer-container {
             margin-top: 20px;
             padding: 15px;
-            background-color: #e8f5e9;
+            background-color: rgba(76, 175, 80, 0.1);
             border-radius: 8px;
             border-left: 4px solid var(--correct-color);
         }
@@ -257,7 +278,7 @@
         #explanation-container {
             margin-top: 15px;
             padding: 15px;
-            background-color: #e3f2fd;
+            background-color: rgba(33, 150, 243, 0.1);
             border-radius: 8px;
             border-left: 4px solid var(--primary-color);
         }
@@ -348,7 +369,9 @@
 
         input[type="number"] {
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             border-radius: 4px;
             width: 60px;
         }
@@ -359,7 +382,7 @@
 
         /* 多选选中状态 */
         .selected {
-            background-color: #fff3e0 !important;
+            background-color: rgba(255, 152, 0, 0.1) !important;
             border-left: 4px solid var(--warning-color) !important;
         }
 
@@ -382,7 +405,7 @@
             display: flex;
             align-items: center;
             gap: 3px;
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             padding: 3px 6px;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -396,7 +419,7 @@
 
         /* 统计卡片 */
         .stats-card {
-            background-color: white;
+            background-color: var(--container-bg);
             border-radius: 8px;
             padding: 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -411,7 +434,7 @@
         }
 
         .stat-card {
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             border-radius: 8px;
             padding: 15px;
             text-align: center;
@@ -458,7 +481,8 @@
         }
 
         .tab:not(.active) {
-            color: #333;
+            color: var(--text-color);
+            opacity: 0.7;
         }
 
         /* 练习和考试模式选项卡特殊样式 */
@@ -495,7 +519,7 @@
 
         /* 考试模式 */
         #exam-info {
-            background-color: #e3f2fd;
+            background-color: rgba(33, 150, 243, 0.1);
             padding: 10px 15px;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -520,7 +544,7 @@
 
         /* 考试模式题目容器 */
         #exam-question-container {
-            background-color: white;
+            background-color: var(--container-bg);
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -549,7 +573,7 @@
 
         /* 考试模式选中状态 */
         .exam-selected {
-            background-color: #e8f5e9 !important;
+            background-color: rgba(76, 175, 80, 0.1) !important;
             border-left: 4px solid var(--correct-color) !important;
         }
 
@@ -573,7 +597,7 @@
         #exam-wrong-sidebar {
             width: 190px;
             /* 放大25% */
-            background-color: white;
+            background-color: var(--container-bg);
             border-radius: 8px;
             padding: 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -617,16 +641,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--light-bg);
+            background-color: var(--bg-color);
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
             font-size: 0.8rem;
+            color: var(--text-color);
         }
 
         .question-number:hover {
-            background-color: #e0e0e0;
+            background-color: var(--item-hover-bg);
         }
 
         .question-number.current {
@@ -654,7 +679,7 @@
             gap: 10px;
             margin-bottom: 20px;
             padding: 15px;
-            background-color: white;
+            background-color: var(--container-bg);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
@@ -794,6 +819,8 @@
                     <span id="font-size-display">12px</span>
                     <button id="increase-font" class="button button-primary">+</button>
                 </div>
+                <button id="themeToggle" class="button"
+                    style="background-color: #333; color: white; margin-left: 10px;">🌙 深夜模式</button>
                 <div id="bg-color-control" style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
                     <span style="font-size: 0.9rem;">背景色:</span>
                     <input type="color" id="bgColorInput" value="#f5f5f5"
@@ -1079,7 +1106,7 @@
                 practiceAnswers: {},
                 questionFontSize: 12, // 题目字体大小
                 optionFontSize: 12,   // 选项字体大小
-                backgroundColor: '#f5f5f5', // 背景颜色
+                isDarkMode: false,    // 是否为深夜模式
                 examTimeLeft: 90 * 60, // 90分钟，以秒为单位
                 examTimer: null,
                 questionOrders: {
@@ -1114,7 +1141,7 @@
                 this.setupEventListeners();
                 this.setupTabs();
                 this.updateFontSizes();
-                this.setupBackgroundColor();
+                this.setupTheme();
                 this.updateUI();
 
                 // 添加页面离开确认
@@ -1615,31 +1642,33 @@
 
 
 
-            // 设置背景颜色功能
-            setupBackgroundColor() {
-                const bgColorInput = document.getElementById('bgColorInput');
-                const resetBgButton = document.getElementById('resetBgColor');
+            // 设置主题功能 (深夜模式)
+            setupTheme() {
+                const themeToggle = document.getElementById('themeToggle');
 
-                // 初始化颜色
-                if (this.data.backgroundColor) {
-                    document.documentElement.style.setProperty('--light-bg', this.data.backgroundColor);
-                    bgColorInput.value = this.data.backgroundColor;
+                // 初始化主题
+                if (this.data.isDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    themeToggle.textContent = '☀️ 日间模式';
+                    themeToggle.style.backgroundColor = '#f5f5f5';
+                    themeToggle.style.color = '#333';
                 }
 
-                // 监听颜色变化
-                bgColorInput.addEventListener('input', (e) => {
-                    const color = e.target.value;
-                    this.data.backgroundColor = color;
-                    document.documentElement.style.setProperty('--light-bg', color);
-                    this.saveToStorage();
-                });
+                // 监听切换
+                themeToggle.addEventListener('click', () => {
+                    this.data.isDarkMode = !this.data.isDarkMode;
+                    document.body.classList.toggle('dark-mode');
 
-                // 重置颜色
-                resetBgButton.addEventListener('click', () => {
-                    const defaultColor = '#f5f5f5';
-                    this.data.backgroundColor = defaultColor;
-                    document.documentElement.style.setProperty('--light-bg', defaultColor);
-                    bgColorInput.value = defaultColor;
+                    if (this.data.isDarkMode) {
+                        themeToggle.textContent = '☀️ 日间模式';
+                        themeToggle.style.backgroundColor = '#f5f5f5';
+                        themeToggle.style.color = '#333';
+                    } else {
+                        themeToggle.textContent = '🌙 深夜模式';
+                        themeToggle.style.backgroundColor = '#333';
+                        themeToggle.style.color = 'white';
+                    }
+
                     this.saveToStorage();
                 });
             },
