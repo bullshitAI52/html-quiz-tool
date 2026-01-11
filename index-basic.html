@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能刷题工具 - 模块化版</title>
+    <!-- 全局错误捕获 (调试用) -->
+    <script>
+        window.onerror = function (msg, url, line, col, error) {
+            alert("Error: " + msg + "\nurl: " + url + "\nline: " + line);
+            return false;
+        };
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="header">
+            <h1>智能题库系统</h1>
+        </div>
+
+        <!-- 全局设置栏 -->
+        <div id="global-settings">
+            <div id="library-manager">
+                <div id="library-info" style="margin-bottom: 10px; font-weight: bold; color: #666;">当前题库: 未选择</div>
+                <button id="modeButton" class="button button-warning">切换到背题模式</button>
+                <input type="file" id="fileInput" class="hidden" accept=".xlsx,.xls">
+                <button id="importButton" class="button button-success">导入新题库</button>
+                <button id="deleteLibraryButton" class="button button-danger">删除当前题库</button>
+                <button id="resetLibraryButton" class="button button-warning">重置题库</button>
+                <div id="font-size-controls">
+                    <button id="decrease-font" class="button button-primary">-</button>
+                    <span id="font-size-display">12px</span>
+                    <button id="increase-font" class="button button-primary">+</button>
+                </div>
+                <button id="themeToggle" class="button"
+                    style="background-color: #333; color: white; margin-left: 10px;">🌙 深夜模式</button>
+
+                <div id="library-list"></div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="practice">练习模式</div>
+            <div class="tab" data-tab="practice-wrong">练习错题库</div>
+            <div class="tab" data-tab="exam">考试模式</div>
+            <div class="tab" data-tab="exam-wrong">考试错题库</div>
+            <div class="tab" data-tab="exam-stats">考试统计</div>
+        </div>
+
+        <div class="tab-content active" id="practice-tab">
+            <div id="practice-layout">
+                <div id="practice-sidebar">
+                    <div class="question-section">
+                        <div class="section-title">单选题</div>
+                        <div class="question-grid" id="practice-single-grid">
+                            <!-- 单选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">多选题</div>
+                        <div class="question-grid" id="practice-multi-grid">
+                            <!-- 多选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">判断题</div>
+                        <div class="question-grid" id="practice-judge-grid">
+                            <!-- 判断题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="practice-content">
+                    <div id="progress-container">
+                        <div id="status-info">
+                            <span>总题数: <strong id="stats-total">0</strong></span> |
+                            <span>已答: <strong id="stats-answered">0</strong></span> |
+                            <span>正确率: <strong id="stats-accuracy">0%</strong></span>
+                        </div>
+                        <div id="progress-bar">
+                            <div id="progress"
+                                style="position: relative; background: #4CAF50; height: 100%; transition: width 0.3s;">
+                                <span id="progress-text"
+                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-size: 12px;">0/0</span>
+                            </div>
+                            <div id="progress-fill" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div id="empty-state" class="hidden" style="text-align: center; padding: 50px;">
+                        <div style="font-size: 48px; margin-bottom: 20px;">📂</div>
+                        <h3>暂无题库</h3>
+                        <p style="color: #666;">请点击顶部"导入新题库"按钮上传Excel文件</p>
+                    </div>
+
+                    <div id="question-container">
+                        <div id="question"></div>
+                        <div id="options"></div>
+                        <div id="answer-result" style="margin-top: 20px;"></div>
+
+                        <div id="answer-container" class="hidden">
+                            <strong>正确答案：</strong><span id="correct-answer"></span>
+                        </div>
+
+                        <div id="explanation-container" class="hidden">
+                            <strong>解析：</strong><span id="explanation"></span>
+                        </div>
+                    </div>
+
+                    <div id="navigation">
+                        <div id="nav-buttons">
+                            <button id="prevButton" class="button button-primary">上一题</button>
+                            <button id="nextButton" class="button button-primary">下一题</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="exam-tab">
+            <div id="exam-info">
+                <div>
+                    <strong>考试模式</strong> - 单选题0.5分(100题) | 多选题1分(20题) | 判断题1分(30题) | 总分100分 | 60分及格
+                </div>
+                <div id="exam-timer">剩余时间: 90:00</div>
+                <div id="exam-score">得分: <span id="current-score">0</span></div>
+            </div>
+
+            <div id="exam-start-container" class="stats-card" style="text-align: center;">
+                <h3>考试模式</h3>
+                <p>考试时间: 90分钟</p>
+                <p>总分: 100分 | 及格: 60分</p>
+                <button id="start-exam" class="button button-success">开始考试</button>
+            </div>
+
+            <div id="exam-layout" class="hidden">
+                <div id="exam-sidebar">
+                    <div class="question-section">
+                        <div class="section-title">单选题 (1-100)</div>
+                        <div class="question-grid" id="single-choice-grid">
+                            <!-- 单选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">多选题 (101-120)</div>
+                        <div class="question-grid" id="multi-choice-grid">
+                            <!-- 多选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">判断题 (121-150)</div>
+                        <div class="question-grid" id="judge-grid">
+                            <!-- 判断题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="exam-content">
+                    <div id="exam-progress-container">
+                        <div id="exam-status-info"></div>
+                        <div id="exam-progress-bar">
+                            <div id="exam-progress"></div>
+                        </div>
+                    </div>
+
+                    <div id="exam-question-container">
+                        <!-- 已删除字体控制按钮 -->
+                        <div id="exam-question"></div>
+                        <div id="exam-options"></div>
+                        <div id="exam-answer-result" style="margin-top: 20px;"></div>
+                    </div>
+
+                    <div id="exam-navigation">
+                        <div>
+                            <button id="exam-prevButton" class="button button-primary">上一题</button>
+                            <span style="display:inline-block; width: 45px;"></span>
+                            <button id="exam-nextButton" class="button button-primary">下一题</button>
+                        </div>
+                        <button id="submit-exam" class="button button-success">提交考试</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="exam-stats-tab">
+            <div class="stats-card">
+                <h3>考试历史记录</h3>
+                <div id="exam-history-list">
+                    <!-- 考试历史记录将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="practice-wrong-tab">
+            <div id="practice-wrong-layout">
+                <div id="practice-wrong-sidebar">
+                    <div class="question-section">
+                        <div class="section-title">单选题</div>
+                        <div class="question-grid" id="practice-wrong-single-grid">
+                            <!-- 单选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">多选题</div>
+                        <div class="question-grid" id="practice-wrong-multi-grid">
+                            <!-- 多选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">判断题</div>
+                        <div class="question-grid" id="practice-wrong-judge-grid">
+                            <!-- 判断题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="practice-wrong-content">
+                    <div id="practice-wrong-progress-container">
+                        <div id="practice-wrong-status-info"></div>
+                        <div id="practice-wrong-progress-bar">
+                            <div id="practice-wrong-progress"></div>
+                        </div>
+                    </div>
+
+                    <div id="practice-wrong-question-container">
+                        <div id="practice-wrong-question-controls">
+                            <button id="practice-wrong-modeButton" class="button button-warning">切换到背题模式</button>
+                        </div>
+                        <div id="practice-wrong-question"></div>
+                        <div id="practice-wrong-options"></div>
+                        <div id="practice-wrong-answer-result" style="margin-top: 20px;"></div>
+
+                        <div id="practice-wrong-answer-container" class="hidden">
+                            <strong>正确答案：</strong><span id="practice-wrong-correct-answer"></span>
+                        </div>
+
+                        <div id="practice-wrong-explanation-container" class="hidden">
+                            <strong>解析：</strong><span id="practice-wrong-explanation"></span>
+                        </div>
+                    </div>
+
+                    <div id="practice-wrong-navigation">
+                        <div id="practice-wrong-nav-buttons">
+                            <button id="practice-wrong-prevButton" class="button button-primary">上一题</button>
+                            <button id="practice-wrong-nextButton" class="button button-primary">下一题</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="exam-wrong-tab">
+            <div id="exam-wrong-layout">
+                <div id="exam-wrong-sidebar">
+                    <div class="question-section">
+                        <div class="section-title">单选题</div>
+                        <div class="question-grid" id="exam-wrong-single-grid">
+                            <!-- 单选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">多选题</div>
+                        <div class="question-grid" id="exam-wrong-multi-grid">
+                            <!-- 多选题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="question-section">
+                        <div class="section-title">判断题</div>
+                        <div class="question-grid" id="exam-wrong-judge-grid">
+                            <!-- 判断题数字按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="exam-wrong-content">
+                    <div id="exam-wrong-progress-container">
+                        <div id="exam-wrong-status-info"></div>
+                        <div id="exam-wrong-progress-bar">
+                            <div id="exam-wrong-progress"></div>
+                        </div>
+                    </div>
+
+                    <div id="exam-wrong-question-container">
+                        <div id="exam-wrong-question-controls">
+                            <button id="exam-wrong-modeButton" class="button button-warning">切换到背题模式</button>
+                        </div>
+                        <div id="exam-wrong-question"></div>
+                        <div id="exam-wrong-options"></div>
+                        <div id="exam-wrong-answer-result" style="margin-top: 20px;"></div>
+
+                        <div id="exam-wrong-answer-container" class="hidden">
+                            <strong>正确答案：</strong><span id="exam-wrong-correct-answer"></span>
+                        </div>
+
+                        <div id="exam-wrong-explanation-container" class="hidden">
+                            <strong>解析：</strong><span id="exam-wrong-explanation"></span>
+                        </div>
+                    </div>
+
+                    <div id="exam-wrong-navigation">
+                        <div id="exam-wrong-nav-buttons">
+                            <button id="exam-wrong-prevButton" class="button button-primary">上一题</button>
+                            <button id="exam-wrong-nextButton" class="button button-primary">下一题</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
