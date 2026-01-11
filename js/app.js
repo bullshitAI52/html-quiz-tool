@@ -3,6 +3,10 @@ import * as Logic from './logic.js';
 import * as UI from './ui.js';
 import * as Storage from './storage.js';
 
+// Debug check
+console.log('App.js loaded');
+// alert('App.js loaded - Debug Mode'); // Enable if needed, but let's rely on click alert first.
+
 window.quizApp = {
     init() {
         Storage.loadFromStorage();
