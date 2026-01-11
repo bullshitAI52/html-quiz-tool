@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
             --question-font-size: 12px;
             --option-font-size: 12px;
         }
-          
+
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
             margin: 0;
@@ -27,17 +28,17 @@
             line-height: 1.6;
             font-size: var(--question-font-size);
         }
-          
+
         #app {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             min-height: 100vh;
             box-sizing: border-box;
         }
-          
+
         #header {
             background: linear-gradient(135deg, var(--dark-bg), #555);
             color: white;
@@ -48,12 +49,12 @@
             justify-content: space-between;
             align-items: center;
         }
-          
+
         #header h1 {
             margin: 0;
             font-size: 1.2rem;
         }
-          
+
         /* 全局设置栏 */
         #global-settings {
             display: flex;
@@ -63,21 +64,21 @@
             padding: 15px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
-         
+
         #library-manager {
             display: flex;
             gap: 10px;
             align-items: center;
         }
-          
+
         #library-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
-          
+
         .library-item {
             padding: 8px 15px;
             background-color: var(--light-bg);
@@ -89,27 +90,27 @@
             align-items: center;
             gap: 5px;
         }
-          
+
         .library-item:hover {
             background-color: #e0e0e0;
         }
-          
+
         .library-item.active {
             background-color: var(--primary-color);
             color: white;
         }
-          
+
         .library-count {
-            background-color: rgba(255,255,255,0.3);
+            background-color: rgba(255, 255, 255, 0.3);
             padding: 2px 6px;
             border-radius: 10px;
             font-size: 0.8rem;
         }
-          
+
         #progress-container {
             margin-bottom: 20px;
         }
-          
+
         #progress-bar {
             height: 12px;
             background-color: #e0e0e0;
@@ -117,7 +118,7 @@
             overflow: hidden;
             margin-top: 5px;
         }
-          
+
         #progress {
             height: 100%;
             background: linear-gradient(90deg, var(--primary-color), #64b5f6);
@@ -125,16 +126,16 @@
             transition: width 0.3s;
             border-radius: 6px;
         }
-          
+
         #question-container {
             background-color: white;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
             position: relative;
         }
-          
+
         #question {
             font-size: 1.2em;
             margin-bottom: 20px;
@@ -143,7 +144,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-          
+
         .question-type {
             display: inline-block;
             background-color: var(--info-color);
@@ -154,7 +155,7 @@
             margin-left: 10px;
             vertical-align: middle;
         }
-         
+
         .difficulty-tag {
             display: inline-block;
             padding: 3px 8px;
@@ -163,28 +164,30 @@
             margin-left: 10px;
             vertical-align: middle;
         }
-         
+
         .difficulty-easy {
             background-color: #4CAF50;
             color: white;
         }
-         
+
         .difficulty-medium {
             background-color: #FF9800;
             color: white;
         }
-         
+
         .difficulty-hard {
             background-color: #f44336;
             color: white;
         }
-          
+
         .option {
             display: flex;
             align-items: flex-start;
             width: 100%;
-            padding: 6px 15px; /* 高度缩小50% */
-            margin: 4px 0; /* 间距缩小50% */
+            padding: 6px 15px;
+            /* 高度缩小50% */
+            margin: 4px 0;
+            /* 间距缩小50% */
             background-color: var(--light-bg);
             border: none;
             border-left: 4px solid transparent;
@@ -193,13 +196,13 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-          
+
         .option:hover {
             background-color: #e0e0e0;
             transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-          
+
         .option-letter {
             display: inline-block;
             width: 28px;
@@ -212,37 +215,37 @@
             font-weight: bold;
             flex-shrink: 0;
         }
-          
+
         /* 正确答案样式 - 绿色 */
         .correct-answer {
             background-color: #e8f5e9 !important;
             border-left-color: var(--correct-color) !important;
             color: #2e7d32;
         }
-          
+
         .correct-answer .option-letter {
             background-color: var(--correct-color);
             color: white;
         }
-          
+
         /* 用户选择的错误答案 - 红色 */
         .wrong-answer {
             background-color: #ffebee !important;
             border-left-color: var(--wrong-color) !important;
             color: #c62828;
         }
-          
+
         .wrong-answer .option-letter {
             background-color: var(--wrong-color);
             color: white;
         }
-          
+
         /* 背题模式下的选项样式 */
         .back-mode-option {
             background-color: white;
             cursor: default;
         }
-          
+
         #answer-container {
             margin-top: 20px;
             padding: 15px;
@@ -250,7 +253,7 @@
             border-radius: 8px;
             border-left: 4px solid var(--correct-color);
         }
-          
+
         #explanation-container {
             margin-top: 15px;
             padding: 15px;
@@ -258,7 +261,7 @@
             border-radius: 8px;
             border-left: 4px solid var(--primary-color);
         }
-          
+
         .button {
             padding: 10px 20px;
             border: none;
@@ -271,99 +274,100 @@
             justify-content: center;
             gap: 5px;
         }
-          
+
         .button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-          
+
         .button-primary {
             background-color: var(--primary-color);
             color: white;
         }
-          
+
         .button-success {
             background-color: var(--success-color);
             color: white;
         }
-          
+
         .button-danger {
             background-color: var(--wrong-color);
             color: white;
         }
-          
+
         .button-warning {
             background-color: var(--warning-color);
             color: white;
         }
-          
+
         #navigation {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
             gap: 45px;
         }
-         
+
         #nav-buttons {
             display: flex;
             gap: 45px;
         }
-         
+
         #font-controls {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-         
+
         #font-type-controls {
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-left: 15px;
         }
-         
+
         .font-type-group {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-         
+
         .font-type-label {
             font-size: 0.8rem;
             min-width: 60px;
         }
-          
+
         #status-info {
             margin-bottom: 15px;
-            font-size: 14px; /* 固定为14px，不受字体控制影响 */
+            font-size: 14px;
+            /* 固定为14px，不受字体控制影响 */
             color: #666;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
         }
-          
+
         input[type="number"] {
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             width: 60px;
         }
-          
+
         .hidden {
             display: none;
         }
-          
+
         /* 多选选中状态 */
         .selected {
             background-color: #fff3e0 !important;
             border-left: 4px solid var(--warning-color) !important;
         }
-         
+
         .selected .option-letter {
             background-color: var(--warning-color);
             color: white;
         }
-         
+
         /* 字体大小控制 */
         #question-controls {
             position: absolute;
@@ -373,7 +377,7 @@
             align-items: center;
             gap: 10px;
         }
-         
+
         #font-size-controls {
             display: flex;
             align-items: center;
@@ -383,54 +387,54 @@
             border-radius: 15px;
             font-size: 0.8rem;
         }
-         
+
         #font-size-display {
             min-width: 25px;
             text-align: center;
             font-weight: bold;
         }
-         
+
         /* 统计卡片 */
         .stats-card {
             background-color: white;
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
         }
-         
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
-         
+
         .stat-card {
             background-color: var(--light-bg);
             border-radius: 8px;
             padding: 15px;
             text-align: center;
         }
-         
+
         .stat-card .value {
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 5px;
         }
-         
+
         .stat-card.correct .value {
             color: var(--correct-color);
         }
-         
+
         .stat-card.wrong .value {
             color: var(--wrong-color);
         }
-         
+
         .stat-card.answered .value {
             color: var(--primary-color);
         }
-         
+
         /* 标签页样式 */
         .tabs {
             display: flex;
@@ -438,7 +442,7 @@
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
-         
+
         .tab {
             padding: 8px 16px;
             cursor: pointer;
@@ -446,49 +450,49 @@
             transition: all 0.2s;
             font-size: 0.9rem;
         }
-         
+
         .tab.active {
             border-bottom-color: var(--primary-color);
             color: var(--primary-color);
             font-weight: bold;
         }
-         
+
         .tab:not(.active) {
             color: #333;
         }
-         
+
         /* 练习和考试模式选项卡特殊样式 */
         .tab[data-tab="practice"]:not(.active),
         .tab[data-tab="exam"]:not(.active) {
             color: #f44336;
             font-weight: bold;
         }
-         
+
         .tab-content {
             display: none;
         }
-         
+
         .tab-content.active {
             display: block;
         }
-         
+
         /* 错题列表 */
         .wrong-questions-list {
             max-height: 400px;
             overflow-y: auto;
         }
-         
+
         .wrong-question-item {
             padding: 10px 15px;
             border-bottom: 1px solid #eee;
             cursor: pointer;
             transition: all 0.2s;
         }
-         
+
         .wrong-question-item:hover {
             background-color: var(--light-bg);
         }
-         
+
         /* 考试模式 */
         #exam-info {
             background-color: #e3f2fd;
@@ -499,13 +503,13 @@
             justify-content: space-between;
             align-items: center;
         }
-         
+
         #exam-score {
             font-weight: bold;
             font-size: 1.2rem;
             color: var(--primary-color);
         }
-         
+
         #exam-timer {
             font-weight: bold;
             color: var(--primary-color);
@@ -513,17 +517,17 @@
             margin-left: auto;
             margin-right: 20px;
         }
-         
+
         /* 考试模式题目容器 */
         #exam-question-container {
             background-color: white;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
             position: relative;
         }
-         
+
         #exam-question {
             font-size: 1.2em;
             margin-bottom: 20px;
@@ -532,7 +536,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-         
+
         /* 考试模式控制按钮 */
         #exam-controls {
             position: absolute;
@@ -542,18 +546,18 @@
             align-items: center;
             gap: 10px;
         }
-         
+
         /* 考试模式选中状态 */
         .exam-selected {
             background-color: #e8f5e9 !important;
             border-left: 4px solid var(--correct-color) !important;
         }
-         
+
         .exam-selected .option-letter {
             background-color: var(--correct-color);
             color: white;
         }
-         
+
         /* 考试模式和练习模式布局 */
         #exam-layout,
         #practice-layout,
@@ -562,20 +566,21 @@
             display: flex;
             gap: 20px;
         }
-         
+
         #exam-sidebar,
         #practice-sidebar,
         #practice-wrong-sidebar,
         #exam-wrong-sidebar {
-            width: 190px; /* 放大25% */
+            width: 190px;
+            /* 放大25% */
             background-color: white;
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             height: 600px;
             overflow-y: auto;
         }
-         
+
         #exam-content,
         #practice-content,
         #practice-wrong-content,
@@ -583,11 +588,11 @@
             flex: 1;
             min-width: 0;
         }
-         
+
         .question-section {
             margin-bottom: 20px;
         }
-         
+
         .section-title {
             font-weight: bold;
             margin-bottom: 10px;
@@ -596,16 +601,19 @@
             padding-bottom: 5px;
             font-size: 0.9rem;
         }
-         
+
         .question-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr)); /* 放大25% */
+            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+            /* 放大25% */
             gap: 5px;
         }
-         
+
         .question-number {
-            width: 30px; /* 放大25% */
-            height: 30px; /* 放大25% */
+            width: 30px;
+            /* 放大25% */
+            height: 30px;
+            /* 放大25% */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -616,29 +624,29 @@
             border: 2px solid transparent;
             font-size: 0.8rem;
         }
-         
+
         .question-number:hover {
             background-color: #e0e0e0;
         }
-         
+
         .question-number.current {
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
         }
-         
+
         .question-number.answered {
             background-color: var(--correct-color);
             color: white;
             border-color: var(--correct-color);
         }
-         
+
         .question-number.wrong {
             background-color: var(--wrong-color);
             color: white;
             border-color: var(--wrong-color);
         }
-         
+
         /* 练习模式导航 */
         #practice-nav {
             display: flex;
@@ -648,9 +656,9 @@
             padding: 15px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
-         
+
         #exam-navigation,
         #practice-wrong-navigation,
         #exam-wrong-navigation {
@@ -658,26 +666,26 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-         
+
         /* 错题库题干加粗 */
         #practice-wrong-question,
         #exam-wrong-question {
             font-weight: bold;
         }
-         
+
         /* 响应式设计 */
         @media (max-width: 1024px) {
             #app {
                 padding: 15px;
             }
-             
+
             #exam-layout,
             #practice-layout,
             #practice-wrong-layout,
             #exam-wrong-layout {
                 flex-direction: column;
             }
-             
+
             #exam-sidebar,
             #practice-sidebar,
             #practice-wrong-sidebar,
@@ -687,91 +695,92 @@
                 max-height: 300px;
                 order: 2;
             }
-             
+
             #exam-content,
             #practice-content,
             #practice-wrong-content,
             #exam-wrong-content {
                 order: 1;
             }
-             
+
             #global-settings {
                 flex-direction: column;
                 gap: 15px;
                 align-items: flex-start;
             }
-             
+
             .tabs {
                 overflow-x: auto;
             }
         }
-         
+
         @media (max-width: 768px) {
             #app {
                 padding: 10px;
             }
-             
+
             #header {
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
             }
-             
+
             .button {
                 width: 100%;
             }
-             
+
             #navigation {
                 flex-direction: column;
                 gap: 10px;
             }
-             
+
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
             }
-             
+
             #question-controls,
             #exam-controls {
                 position: static;
                 margin-bottom: 15px;
                 justify-content: flex-end;
             }
-             
+
             .question-grid {
                 grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
             }
-             
+
             .question-number {
                 width: 25px;
                 height: 25px;
                 font-size: 0.7rem;
             }
         }
-         
+
         @media (max-width: 480px) {
             .tab {
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
-             
+
             #library-manager {
                 flex-direction: column;
                 gap: 10px;
                 align-items: flex-start;
             }
-             
+
             #navigation {
                 gap: 30px;
             }
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <div id="header">
             <h1>智能题库系统</h1>
         </div>
-         
+
         <!-- 全局设置栏 -->
         <div id="global-settings">
             <div id="library-manager">
@@ -785,10 +794,17 @@
                     <span id="font-size-display">12px</span>
                     <button id="increase-font" class="button button-primary">+</button>
                 </div>
+                <div id="bg-color-control" style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
+                    <span style="font-size: 0.9rem;">背景色:</span>
+                    <input type="color" id="bgColorInput" value="#f5f5f5"
+                        style="border: none; width: 30px; height: 30px; padding: 0; cursor: pointer;">
+                    <button id="resetBgColor" class="button button-warning"
+                        style="padding: 2px 8px; font-size: 0.8rem;">重置</button>
+                </div>
                 <div id="library-list"></div>
             </div>
         </div>
-         
+
         <div class="tabs">
             <div class="tab active" data-tab="practice">练习模式</div>
             <div class="tab" data-tab="practice-wrong">练习错题库</div>
@@ -796,7 +812,7 @@
             <div class="tab" data-tab="exam-wrong">考试错题库</div>
             <div class="tab" data-tab="exam-stats">考试统计</div>
         </div>
-         
+
         <div class="tab-content active" id="practice-tab">
             <div id="practice-layout">
                 <div id="practice-sidebar">
@@ -819,7 +835,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div id="practice-content">
                     <div id="progress-container">
                         <div id="status-info"></div>
@@ -827,21 +843,21 @@
                             <div id="progress"></div>
                         </div>
                     </div>
-                      
+
                     <div id="question-container">
                         <div id="question"></div>
                         <div id="options"></div>
                         <div id="answer-result" style="margin-top: 20px;"></div>
-                          
+
                         <div id="answer-container" class="hidden">
                             <strong>正确答案：</strong><span id="correct-answer"></span>
                         </div>
-                          
+
                         <div id="explanation-container" class="hidden">
                             <strong>解析：</strong><span id="explanation"></span>
                         </div>
                     </div>
-                      
+
                     <div id="navigation">
                         <div id="nav-buttons">
                             <button id="prevButton" class="button button-primary">上一题</button>
@@ -851,7 +867,7 @@
                 </div>
             </div>
         </div>
-         
+
         <div class="tab-content" id="exam-tab">
             <div id="exam-info">
                 <div>
@@ -860,14 +876,14 @@
                 <div id="exam-timer">剩余时间: 90:00</div>
                 <div id="exam-score">得分: <span id="current-score">0</span></div>
             </div>
-             
+
             <div id="exam-start-container" class="stats-card" style="text-align: center;">
                 <h3>考试模式</h3>
                 <p>考试时间: 90分钟</p>
                 <p>总分: 100分 | 及格: 60分</p>
                 <button id="start-exam" class="button button-success">开始考试</button>
             </div>
-             
+
             <div id="exam-layout" class="hidden">
                 <div id="exam-sidebar">
                     <div class="question-section">
@@ -889,7 +905,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div id="exam-content">
                     <div id="exam-progress-container">
                         <div id="exam-status-info"></div>
@@ -897,14 +913,14 @@
                             <div id="exam-progress"></div>
                         </div>
                     </div>
-                      
+
                     <div id="exam-question-container">
                         <!-- 已删除字体控制按钮 -->
                         <div id="exam-question"></div>
                         <div id="exam-options"></div>
                         <div id="exam-answer-result" style="margin-top: 20px;"></div>
                     </div>
-                      
+
                     <div id="exam-navigation">
                         <div>
                             <button id="exam-prevButton" class="button button-primary">上一题</button>
@@ -916,7 +932,7 @@
                 </div>
             </div>
         </div>
-         
+
         <div class="tab-content" id="exam-stats-tab">
             <div class="stats-card">
                 <h3>考试历史记录</h3>
@@ -925,7 +941,7 @@
                 </div>
             </div>
         </div>
-         
+
         <div class="tab-content" id="practice-wrong-tab">
             <div id="practice-wrong-layout">
                 <div id="practice-wrong-sidebar">
@@ -948,7 +964,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div id="practice-wrong-content">
                     <div id="practice-wrong-progress-container">
                         <div id="practice-wrong-status-info"></div>
@@ -956,7 +972,7 @@
                             <div id="practice-wrong-progress"></div>
                         </div>
                     </div>
-                      
+
                     <div id="practice-wrong-question-container">
                         <div id="practice-wrong-question-controls">
                             <button id="practice-wrong-modeButton" class="button button-warning">切换到背题模式</button>
@@ -964,16 +980,16 @@
                         <div id="practice-wrong-question"></div>
                         <div id="practice-wrong-options"></div>
                         <div id="practice-wrong-answer-result" style="margin-top: 20px;"></div>
-                          
+
                         <div id="practice-wrong-answer-container" class="hidden">
                             <strong>正确答案：</strong><span id="practice-wrong-correct-answer"></span>
                         </div>
-                          
+
                         <div id="practice-wrong-explanation-container" class="hidden">
                             <strong>解析：</strong><span id="practice-wrong-explanation"></span>
                         </div>
                     </div>
-                      
+
                     <div id="practice-wrong-navigation">
                         <div id="practice-wrong-nav-buttons">
                             <button id="practice-wrong-prevButton" class="button button-primary">上一题</button>
@@ -983,7 +999,7 @@
                 </div>
             </div>
         </div>
-         
+
         <div class="tab-content" id="exam-wrong-tab">
             <div id="exam-wrong-layout">
                 <div id="exam-wrong-sidebar">
@@ -1006,7 +1022,7 @@
                         </div>
                     </div>
                 </div>
-                 
+
                 <div id="exam-wrong-content">
                     <div id="exam-wrong-progress-container">
                         <div id="exam-wrong-status-info"></div>
@@ -1014,7 +1030,7 @@
                             <div id="exam-wrong-progress"></div>
                         </div>
                     </div>
-                      
+
                     <div id="exam-wrong-question-container">
                         <div id="exam-wrong-question-controls">
                             <button id="exam-wrong-modeButton" class="button button-warning">切换到背题模式</button>
@@ -1022,16 +1038,16 @@
                         <div id="exam-wrong-question"></div>
                         <div id="exam-wrong-options"></div>
                         <div id="exam-wrong-answer-result" style="margin-top: 20px;"></div>
-                          
+
                         <div id="exam-wrong-answer-container" class="hidden">
                             <strong>正确答案：</strong><span id="exam-wrong-correct-answer"></span>
                         </div>
-                          
+
                         <div id="exam-wrong-explanation-container" class="hidden">
                             <strong>解析：</strong><span id="exam-wrong-explanation"></span>
                         </div>
                     </div>
-                      
+
                     <div id="exam-wrong-navigation">
                         <div id="exam-wrong-nav-buttons">
                             <button id="exam-wrong-prevButton" class="button button-primary">上一题</button>
@@ -1042,7 +1058,7 @@
             </div>
         </div>
     </div>
- 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
         // 题库应用
@@ -1063,6 +1079,7 @@
                 practiceAnswers: {},
                 questionFontSize: 12, // 题目字体大小
                 optionFontSize: 12,   // 选项字体大小
+                backgroundColor: '#f5f5f5', // 背景颜色
                 examTimeLeft: 90 * 60, // 90分钟，以秒为单位
                 examTimer: null,
                 questionOrders: {
@@ -1071,34 +1088,35 @@
                     judge: 'sequential'
                 },
                 examStarted: false,
-                 
+
                 // 练习错题库数据
                 practiceWrongQuestions: [],
                 practiceWrongCurrentIndex: 0,
                 practiceWrongMode: 'practice', // 练习错题库模式：practice 或 back
-                 
+
                 // 考试错题库数据
                 examWrongQuestions: [],
                 examWrongCurrentIndex: 0,
                 examWrongMode: 'practice', // 考试错题库模式：practice 或 back
-                 
+
                 // 题目练习次数记录
                 questionPracticeCounts: {},
                 correctCounts: {},
-                 
+
                 // 错题库多选题选中状态 - 用于临时存储当前题目的选择状态
                 practiceWrongMultiSelectAnswers: {},
                 examWrongMultiSelectAnswers: {}
             },
-             
+
             // 初始化应用
             init() {
                 this.loadFromStorage();
                 this.setupEventListeners();
                 this.setupTabs();
                 this.updateFontSizes();
+                this.setupBackgroundColor();
                 this.updateUI();
-                 
+
                 // 添加页面离开确认
                 window.addEventListener('beforeunload', (e) => {
                     if (this.data.examStarted) {
@@ -1107,7 +1125,7 @@
                     }
                 });
             },
-              
+
             // 设置标签页
             setupTabs() {
                 const tabs = document.querySelectorAll('.tab');
@@ -1118,7 +1136,7 @@
                     });
                 });
             },
-              
+
             // 切换标签页
             switchTab(tabName) {
                 // 如果正在考试，提示用户
@@ -1132,19 +1150,19 @@
                     }
                     return;
                 }
-                 
+
                 document.querySelectorAll('.tab').forEach(tab => {
                     tab.classList.remove('active');
                 });
                 document.querySelectorAll('.tab-content').forEach(content => {
                     content.classList.remove('active');
                 });
-                 
+
                 document.querySelector(`.tab[data-tab="${tabName}"]`).classList.add('active');
                 document.getElementById(`${tabName}-tab`).classList.add('active');
-                 
+
                 this.data.currentTab = tabName;
-                 
+
                 // 更新特定标签页内容
                 if (tabName === 'exam-stats') {
                     this.updateExamStats();
@@ -1170,7 +1188,7 @@
                     this.updateUI();
                 }
             },
-              
+
             // 生成练习题目
             generatePracticeQuestions() {
                 const library = this.getCurrentLibrary();
@@ -1178,46 +1196,46 @@
                     this.data.practiceQuestions = [];
                     return;
                 }
-                 
+
                 // 按类型分类题目
                 const singleChoiceQuestions = library.questions.filter(q => q.类型 === '单选');
                 const multiChoiceQuestions = library.questions.filter(q => q.类型 === '多选');
                 const judgeQuestions = library.questions.filter(q => q.类型 === '判断');
-                 
+
                 // 根据各题型的顺序设置生成题目
                 let singleQuestions = [...singleChoiceQuestions];
                 let multiQuestions = [...multiChoiceQuestions];
                 let judgeQuestionsArr = [...judgeQuestions];
-                 
+
                 if (this.data.questionOrders.single === 'shuffled') {
                     singleQuestions = this.shuffleArray([...singleQuestions]);
                 }
-                 
+
                 if (this.data.questionOrders.multi === 'shuffled') {
                     multiQuestions = this.shuffleArray([...multiQuestions]);
                 }
-                 
+
                 if (this.data.questionOrders.judge === 'shuffled') {
                     judgeQuestionsArr = this.shuffleArray([...judgeQuestionsArr]);
                 }
-                 
+
                 this.data.practiceQuestions = [
                     ...singleQuestions,
                     ...multiQuestions,
                     ...judgeQuestionsArr
                 ];
-                 
+
                 this.data.currentIndex = 0;
                 this.updatePracticeSidebar();
             },
-              
+
             // 更新练习侧边栏
             updatePracticeSidebar() {
                 const library = this.getCurrentLibrary();
                 const singleQuestions = library.questions.filter(q => q.类型 === '单选');
                 const multiQuestions = library.questions.filter(q => q.类型 === '多选');
                 const judgeQuestions = library.questions.filter(q => q.类型 === '判断');
-                 
+
                 // 单选题网格 - 显示单选题实际数量
                 const singleGrid = document.getElementById('practice-single-grid');
                 singleGrid.innerHTML = '';
@@ -1231,7 +1249,7 @@
                     });
                     singleGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 多选题网格 - 显示多选题实际数量
                 const multiGrid = document.getElementById('practice-multi-grid');
                 multiGrid.innerHTML = '';
@@ -1245,7 +1263,7 @@
                     });
                     multiGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 判断题网格 - 显示判断题实际数量
                 const judgeGrid = document.getElementById('practice-judge-grid');
                 judgeGrid.innerHTML = '';
@@ -1259,21 +1277,21 @@
                     });
                     judgeGrid.appendChild(numberBtn);
                 });
-                 
+
                 this.updatePracticeQuestionNumberStyles();
             },
-              
+
             // 更新练习题目数字样式
             updatePracticeQuestionNumberStyles() {
                 const allNumbers = document.querySelectorAll('#practice-sidebar .question-number');
                 allNumbers.forEach((number, index) => {
                     number.classList.remove('current', 'answered', 'wrong');
-                     
+
                     // 当前题目
                     if (index === this.data.currentIndex) {
                         number.classList.add('current');
                     }
-                     
+
                     // 已答题目标记
                     const library = this.getCurrentLibrary();
                     if (library.userAnswers[index] && library.userAnswers[index].isSubmitted) {
@@ -1285,7 +1303,7 @@
                     }
                 });
             },
-              
+
             // 生成练习错题库题目
             generatePracticeWrongQuestions() {
                 const library = this.getCurrentLibrary();
@@ -1293,7 +1311,7 @@
                     this.data.practiceWrongQuestions = [];
                     return;
                 }
-                 
+
                 // 收集所有练习错题
                 const practiceWrongQuestions = [];
                 library.questions.forEach((question, index) => {
@@ -1306,19 +1324,19 @@
                         });
                     }
                 });
-                 
+
                 this.data.practiceWrongQuestions = practiceWrongQuestions;
                 this.data.practiceWrongCurrentIndex = 0;
                 this.updatePracticeWrongSidebar();
             },
-              
+
             // 更新练习错题库侧边栏
             updatePracticeWrongSidebar() {
                 const practiceWrongQuestions = this.data.practiceWrongQuestions;
                 const singleQuestions = practiceWrongQuestions.filter(q => q.类型 === '单选');
                 const multiQuestions = practiceWrongQuestions.filter(q => q.类型 === '多选');
                 const judgeQuestions = practiceWrongQuestions.filter(q => q.类型 === '判断');
-                 
+
                 // 单选题网格
                 const singleGrid = document.getElementById('practice-wrong-single-grid');
                 singleGrid.innerHTML = '';
@@ -1332,7 +1350,7 @@
                     });
                     singleGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 多选题网格
                 const multiGrid = document.getElementById('practice-wrong-multi-grid');
                 multiGrid.innerHTML = '';
@@ -1346,7 +1364,7 @@
                     });
                     multiGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 判断题网格
                 const judgeGrid = document.getElementById('practice-wrong-judge-grid');
                 judgeGrid.innerHTML = '';
@@ -1360,25 +1378,25 @@
                     });
                     judgeGrid.appendChild(numberBtn);
                 });
-                 
+
                 this.updatePracticeWrongQuestionNumberStyles();
             },
-              
+
             // 更新练习错题库题目数字样式 - 修复：取消红色底纹
             updatePracticeWrongQuestionNumberStyles() {
                 const allNumbers = document.querySelectorAll('#practice-wrong-sidebar .question-number');
                 allNumbers.forEach((number, index) => {
                     number.classList.remove('current', 'answered', 'wrong');
-                     
+
                     // 当前题目
                     if (index === this.data.practiceWrongCurrentIndex) {
                         number.classList.add('current');
                     }
-                     
+
                     // 错题库中不显示红色底纹，只显示当前题目状态
                 });
             },
-              
+
             // 生成考试错题库题目 - 修复后的逻辑
             generateExamWrongQuestions() {
                 const library = this.getCurrentLibrary();
@@ -1386,10 +1404,10 @@
                     this.data.examWrongQuestions = [];
                     return;
                 }
-                 
+
                 // 收集所有考试错题 - 修正数据结构
                 const examWrongQuestions = [];
-                 
+
                 // 添加考试模式中的错题
                 this.data.examHistory.forEach(record => {
                     if (record.wrongQuestions) {
@@ -1410,7 +1428,7 @@
                         });
                     }
                 });
-                 
+
                 // 去重
                 const uniqueExamWrongQuestions = [];
                 const seen = new Set();
@@ -1421,19 +1439,19 @@
                         uniqueExamWrongQuestions.push(wrong);
                     }
                 });
-                 
+
                 this.data.examWrongQuestions = uniqueExamWrongQuestions;
                 this.data.examWrongCurrentIndex = 0;
                 this.updateExamWrongSidebar();
             },
-              
+
             // 更新考试错题库侧边栏
             updateExamWrongSidebar() {
                 const examWrongQuestions = this.data.examWrongQuestions;
                 const singleQuestions = examWrongQuestions.filter(q => q.类型 === '单选');
                 const multiQuestions = examWrongQuestions.filter(q => q.类型 === '多选');
                 const judgeQuestions = examWrongQuestions.filter(q => q.类型 === '判断');
-                 
+
                 // 单选题网格
                 const singleGrid = document.getElementById('exam-wrong-single-grid');
                 singleGrid.innerHTML = '';
@@ -1447,7 +1465,7 @@
                     });
                     singleGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 多选题网格
                 const multiGrid = document.getElementById('exam-wrong-multi-grid');
                 multiGrid.innerHTML = '';
@@ -1461,7 +1479,7 @@
                     });
                     multiGrid.appendChild(numberBtn);
                 });
-                 
+
                 // 判断题网格
                 const judgeGrid = document.getElementById('exam-wrong-judge-grid');
                 judgeGrid.innerHTML = '';
@@ -1475,25 +1493,25 @@
                     });
                     judgeGrid.appendChild(numberBtn);
                 });
-                 
+
                 this.updateExamWrongQuestionNumberStyles();
             },
-              
+
             // 更新考试错题库题目数字样式 - 修复：取消红色底纹
             updateExamWrongQuestionNumberStyles() {
                 const allNumbers = document.querySelectorAll('#exam-wrong-sidebar .question-number');
                 allNumbers.forEach((number, index) => {
                     number.classList.remove('current', 'answered', 'wrong');
-                     
+
                     // 当前题目
                     if (index === this.data.examWrongCurrentIndex) {
                         number.classList.add('current');
                     }
-                     
+
                     // 错题库中不显示红色底纹，只显示当前题目状态
                 });
             },
-              
+
             // 进入考试模式
             enterExamMode() {
                 this.data.examMode = true;
@@ -1503,7 +1521,7 @@
                 this.startExamTimer();
                 this.updateExamUI();
             },
-              
+
             // 生成考试题目
             generateExamQuestions() {
                 const library = this.getCurrentLibrary();
@@ -1511,25 +1529,25 @@
                     this.data.examQuestions = [];
                     return;
                 }
-                 
+
                 // 按类型分类题目
                 const singleChoiceQuestions = library.questions.filter(q => q.类型 === '单选');
                 const multiChoiceQuestions = library.questions.filter(q => q.类型 === '多选');
                 const judgeQuestions = library.questions.filter(q => q.类型 === '判断');
-                 
+
                 // 随机选择题目
                 const selectedSingle = this.shuffleArray([...singleChoiceQuestions]).slice(0, 100);
                 const selectedMulti = this.shuffleArray([...multiChoiceQuestions]).slice(0, 20);
                 const selectedJudge = this.shuffleArray([...judgeQuestions]).slice(0, 30);
-                 
+
                 // 合并题目
                 this.data.examQuestions = [...selectedSingle, ...selectedMulti, ...selectedJudge];
                 this.data.currentIndex = 0;
-                 
+
                 // 更新侧边栏
                 this.updateExamSidebar();
             },
-              
+
             // 更新考试侧边栏
             updateExamSidebar() {
                 // 单选题网格
@@ -1545,7 +1563,7 @@
                     });
                     singleGrid.appendChild(numberBtn);
                 }
-                 
+
                 // 多选题网格
                 const multiGrid = document.getElementById('multi-choice-grid');
                 multiGrid.innerHTML = '';
@@ -1559,7 +1577,7 @@
                     });
                     multiGrid.appendChild(numberBtn);
                 }
-                 
+
                 // 判断题网格
                 const judgeGrid = document.getElementById('judge-grid');
                 judgeGrid.innerHTML = '';
@@ -1573,28 +1591,59 @@
                     });
                     judgeGrid.appendChild(numberBtn);
                 }
-                 
+
                 this.updateQuestionNumberStyles();
             },
-              
+
             // 更新题目数字样式
             updateQuestionNumberStyles() {
                 const allNumbers = document.querySelectorAll('#exam-sidebar .question-number');
                 allNumbers.forEach((number, index) => {
                     number.classList.remove('current', 'answered', 'wrong');
-                     
+
                     // 当前题目
                     if (index === this.data.currentIndex) {
                         number.classList.add('current');
                     }
-                     
+
                     // 已答题目标记 - 考试模式下全部显示绿色底纹
                     if (this.data.examAnswers[index]) {
                         number.classList.add('answered');
                     }
                 });
             },
-              
+
+
+
+            // 设置背景颜色功能
+            setupBackgroundColor() {
+                const bgColorInput = document.getElementById('bgColorInput');
+                const resetBgButton = document.getElementById('resetBgColor');
+
+                // 初始化颜色
+                if (this.data.backgroundColor) {
+                    document.documentElement.style.setProperty('--light-bg', this.data.backgroundColor);
+                    bgColorInput.value = this.data.backgroundColor;
+                }
+
+                // 监听颜色变化
+                bgColorInput.addEventListener('input', (e) => {
+                    const color = e.target.value;
+                    this.data.backgroundColor = color;
+                    document.documentElement.style.setProperty('--light-bg', color);
+                    this.saveToStorage();
+                });
+
+                // 重置颜色
+                resetBgButton.addEventListener('click', () => {
+                    const defaultColor = '#f5f5f5';
+                    this.data.backgroundColor = defaultColor;
+                    document.documentElement.style.setProperty('--light-bg', defaultColor);
+                    bgColorInput.value = defaultColor;
+                    this.saveToStorage();
+                });
+            },
+
             // 打乱数组
             shuffleArray(array) {
                 const newArray = [...array];
@@ -1604,7 +1653,7 @@
                 }
                 return newArray;
             },
-              
+
             // 退出考试模式
             exitExamMode() {
                 this.data.examMode = false;
@@ -1617,7 +1666,7 @@
                 this.data.examTimeLeft = 90 * 60;
                 this.updateExamTimerDisplay();
             },
-              
+
             // 设置事件监听器
             setupEventListeners() {
                 // 字体大小控制
@@ -1626,119 +1675,119 @@
                     this.data.optionFontSize = Math.max(8, this.data.optionFontSize - 1);
                     this.updateFontSizes();
                 });
-                 
+
                 document.getElementById('increase-font').addEventListener('click', () => {
                     this.data.questionFontSize = Math.min(18, this.data.questionFontSize + 1);
                     this.data.optionFontSize = Math.min(18, this.data.optionFontSize + 1);
                     this.updateFontSizes();
                 });
-                 
+
                 // 导入题库
                 document.getElementById('importButton').addEventListener('click', () => {
                     document.getElementById('fileInput').click();
                 });
-                  
+
                 document.getElementById('fileInput').addEventListener('change', (e) => {
                     this.importLibrary(e.target.files[0]);
                     e.target.value = '';
                 });
-                  
+
                 // 删除当前题库
                 document.getElementById('deleteLibraryButton').addEventListener('click', () => {
                     if (this.data.libraries.length === 0) {
                         alert('没有可删除的题库');
                         return;
                     }
-                      
+
                     if (confirm(`确定要删除题库 "${this.getCurrentLibrary().name}" 吗？`)) {
                         this.data.libraries.splice(this.data.currentLibraryIndex, 1);
-                          
+
                         if (this.data.currentLibraryIndex >= this.data.libraries.length) {
                             this.data.currentLibraryIndex = Math.max(0, this.data.libraries.length - 1);
                         }
-                          
+
                         if (this.data.libraries.length === 0) {
                             this.data.currentIndex = 0;
                             this.data.mode = 'practice';
                             this.data.isShuffled = false;
                         }
-                          
+
                         this.saveToStorage();
                         this.updateUI();
                     }
                 });
-                  
+
                 // 切换模式
                 document.getElementById('modeButton').addEventListener('click', () => {
                     this.data.mode = this.data.mode === 'practice' ? 'back' : 'practice';
                     this.saveToStorage();
                     this.updateUI();
                 });
-                  
+
                 // 练习错题库切换模式
                 document.getElementById('practice-wrong-modeButton').addEventListener('click', () => {
                     this.data.practiceWrongMode = this.data.practiceWrongMode === 'practice' ? 'back' : 'practice';
                     this.updatePracticeWrongUI();
                 });
-                  
+
                 // 考试错题库切换模式
                 document.getElementById('exam-wrong-modeButton').addEventListener('click', () => {
                     this.data.examWrongMode = this.data.examWrongMode === 'practice' ? 'back' : 'practice';
                     this.updateExamWrongUI();
                 });
-                  
+
                 // 导航按钮
                 document.getElementById('prevButton').addEventListener('click', () => {
                     this.prevQuestion();
                 });
-                  
+
                 document.getElementById('nextButton').addEventListener('click', () => {
                     this.nextQuestion();
                 });
-                  
+
                 // 练习错题库导航按钮
                 document.getElementById('practice-wrong-prevButton').addEventListener('click', () => {
                     this.prevPracticeWrongQuestion();
                 });
-                  
+
                 document.getElementById('practice-wrong-nextButton').addEventListener('click', () => {
                     this.nextPracticeWrongQuestion();
                 });
-                  
+
                 // 考试错题库导航按钮
                 document.getElementById('exam-wrong-prevButton').addEventListener('click', () => {
                     this.prevExamWrongQuestion();
                 });
-                  
+
                 document.getElementById('exam-wrong-nextButton').addEventListener('click', () => {
                     this.nextExamWrongQuestion();
                 });
-                  
+
                 // 重置题库
                 document.getElementById('resetLibraryButton').addEventListener('click', () => {
                     this.resetLibrary();
                 });
-                  
+
                 // 考试模式导航按钮
                 document.getElementById('exam-prevButton').addEventListener('click', () => {
                     this.prevQuestion();
                 });
-                  
+
                 document.getElementById('exam-nextButton').addEventListener('click', () => {
                     this.nextQuestion();
                 });
-                  
+
                 // 提交考试
                 document.getElementById('submit-exam').addEventListener('click', () => {
                     this.submitExam();
                 });
-                 
+
                 // 开始考试
                 document.getElementById('start-exam').addEventListener('click', () => {
                     this.startExam();
                 });
             },
-             
+
             // 开始考试
             startExam() {
                 if (confirm('确定要开始考试吗？考试时间为90分钟。')) {
@@ -1748,19 +1797,19 @@
                     this.enterExamMode();
                 }
             },
-             
+
             // 更新字体大小
             updateFontSizes() {
                 // 更新CSS变量
                 document.documentElement.style.setProperty('--question-font-size', `${this.data.questionFontSize}px`);
                 document.documentElement.style.setProperty('--option-font-size', `${this.data.optionFontSize}px`);
-                 
+
                 // 更新显示
                 document.getElementById('font-size-display').textContent = `${this.data.questionFontSize}px`;
-                 
+
                 this.saveToStorage();
             },
-                      
+
             // 获取当前题库
             getCurrentLibrary() {
                 return this.data.libraries[this.data.currentLibraryIndex] || {
@@ -1770,7 +1819,7 @@
                     originalOrder: []
                 };
             },
-              
+
             // 获取当前题目
             getCurrentQuestion() {
                 if (this.data.examMode) {
@@ -1780,21 +1829,21 @@
                     return library.questions[this.data.currentIndex] || {};
                 }
             },
-              
+
             // 获取当前练习错题
             getCurrentPracticeWrongQuestion() {
                 return this.data.practiceWrongQuestions[this.data.practiceWrongCurrentIndex] || {};
             },
-              
+
             // 获取当前考试错题
             getCurrentExamWrongQuestion() {
                 return this.data.examWrongQuestions[this.data.examWrongCurrentIndex] || {};
             },
-              
+
             // 导入题库
             importLibrary(file) {
                 if (!file) return;
-                  
+
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     try {
@@ -1803,7 +1852,7 @@
                         const sheetName = workbook.SheetNames[0];
                         const worksheet = workbook.Sheets[sheetName];
                         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-                          
+
                         // 创建新题库
                         const newLibrary = {
                             name: file.name.replace(/\.[^/.]+$/, ""),
@@ -1827,12 +1876,12 @@
                             userAnswers: {},
                             originalOrder: []
                         };
-                          
+
                         // 添加到题库列表
                         this.data.libraries.push(newLibrary);
                         this.data.currentLibraryIndex = this.data.libraries.length - 1;
                         this.data.currentIndex = 0;
-                         
+
                         this.saveToStorage();
                         this.updateUI();
                     } catch (error) {
@@ -1842,39 +1891,39 @@
                 };
                 reader.readAsArrayBuffer(file);
             },
-              
+
             // 确定题目类型
             determineQuestionType(answer) {
                 if (!answer) return '未知';
-                 
+
                 const answerStr = answer.toString().trim().toUpperCase();
-                 
+
                 // 判断题
                 if (answerStr === '对' || answerStr === '错' ||
                     answerStr === '正确' || answerStr === '错误' ||
                     answerStr === 'TRUE' || answerStr === 'FALSE') {
                     return '判断';
                 }
-                 
+
                 // 多选题
                 if (answerStr.replace(/[^A-Z]/g, '').length > 1) {
                     return '多选';
                 }
-                 
+
                 // 单选题
                 return '单选';
             },
-              
+
             // 获取题目分值
             getQuestionScore(type) {
-                switch(type) {
+                switch (type) {
                     case '单选': return 0.5;
                     case '多选': return 1;
                     case '判断': return 1;
                     default: return 1;
                 }
             },
-              
+
             // 切换题库
             switchLibrary(index) {
                 if (index >= 0 && index < this.data.libraries.length) {
@@ -1884,7 +1933,7 @@
                     this.updateUI();
                 }
             },
-              
+
             // 上一题
             prevQuestion() {
                 if (this.data.currentIndex > 0) {
@@ -1895,13 +1944,13 @@
                     alert('已经是第一题了');
                 }
             },
-              
+
             // 下一题
             nextQuestion() {
                 const maxIndex = this.data.examMode ?
                     this.data.examQuestions.length - 1 :
                     this.getCurrentLibrary().questions.length - 1;
-                     
+
                 if (this.data.currentIndex < maxIndex) {
                     this.data.currentIndex++;
                     this.saveToStorage();
@@ -1913,7 +1962,7 @@
                     }
                 }
             },
-              
+
             // 练习错题库上一题
             prevPracticeWrongQuestion() {
                 if (this.data.practiceWrongCurrentIndex > 0) {
@@ -1925,11 +1974,11 @@
                     alert('已经是第一题了');
                 }
             },
-              
+
             // 练习错题库下一题
             nextPracticeWrongQuestion() {
                 const maxIndex = this.data.practiceWrongQuestions.length - 1;
-                     
+
                 if (this.data.practiceWrongCurrentIndex < maxIndex) {
                     this.data.practiceWrongCurrentIndex++;
                     // 离开题目时清除当前题目的临时选择状态
@@ -1939,7 +1988,7 @@
                     alert('已经是最后一题了');
                 }
             },
-              
+
             // 考试错题库上一题
             prevExamWrongQuestion() {
                 if (this.data.examWrongCurrentIndex > 0) {
@@ -1951,11 +2000,11 @@
                     alert('已经是第一题了');
                 }
             },
-              
+
             // 考试错题库下一题
             nextExamWrongQuestion() {
                 const maxIndex = this.data.examWrongQuestions.length - 1;
-                     
+
                 if (this.data.examWrongCurrentIndex < maxIndex) {
                     this.data.examWrongCurrentIndex++;
                     // 离开题目时清除当前题目的临时选择状态
@@ -1965,20 +2014,20 @@
                     alert('已经是最后一题了');
                 }
             },
-              
+
             // 选择选项（考试模式）
             selectExamOption(optionLetter) {
                 if (!this.data.examMode) return;
-               
+
                 const currentQuestion = this.getCurrentQuestion();
-                 
+
                 // 处理判断题
                 let processedOption = optionLetter;
                 if (currentQuestion.类型 === '判断') {
                     if (optionLetter === 'A') processedOption = '对';
                     else if (optionLetter === 'B') processedOption = '错';
                 }
-               
+
                 // 单选题和判断题
                 if (currentQuestion.类型 === '单选' || currentQuestion.类型 === '判断') {
                     this.data.examAnswers[this.data.currentIndex] = {
@@ -1992,35 +2041,35 @@
                         selected: [],
                         isCorrect: false
                     };
-                     
+
                     const index = currentAnswer.selected.indexOf(optionLetter);
                     if (index === -1) {
                         currentAnswer.selected.push(optionLetter);
                     } else {
                         currentAnswer.selected.splice(index, 1);
                     }
-                     
+
                     this.data.examAnswers[this.data.currentIndex] = currentAnswer;
                 }
-                   
+
                 this.updateOptionStyles();
                 this.updateQuestionNumberStyles();
             },
-              
+
             // 选择选项（练习模式）
             selectOption(optionLetter) {
                 if (this.data.mode !== 'practice') return;
-               
+
                 const currentQuestion = this.getCurrentQuestion();
                 const library = this.getCurrentLibrary();
-                 
+
                 // 处理判断题
                 let processedOption = optionLetter;
                 if (currentQuestion.类型 === '判断') {
                     if (optionLetter === 'A') processedOption = '对';
                     else if (optionLetter === 'B') processedOption = '错';
                 }
-               
+
                 // 为单选和判断立即标记提交状态
                 if (currentQuestion.类型 === '单选' || currentQuestion.类型 === '判断') {
                     library.userAnswers[this.data.currentIndex] = {
@@ -2028,12 +2077,12 @@
                         isCorrect: processedOption === currentQuestion.答案,
                         isSubmitted: true
                     };
-                   
+
                     this.saveToStorage();
                     this.updateOptionStyles();
                     this.renderAnswerAndExplanation();
                     this.updatePracticeQuestionNumberStyles();
-                   
+
                     // 显示答题结果
                     const resultDiv = document.getElementById('answer-result');
                     if (processedOption === currentQuestion.答案) {
@@ -2043,19 +2092,19 @@
                         resultDiv.textContent = `回答错误，你的答案是 ${processedOption}`;
                         resultDiv.style.color = 'var(--wrong-color)';
                     }
-                       
+
                     // 更新统计信息
                     this.updateStatsDisplay();
                 }
             },
-  
+
             toggleMultiSelectOption(letter) {
                 const currentLibrary = this.getCurrentLibrary();
                 let userAnswer = currentLibrary.userAnswers[this.data.currentIndex] || {
                     selected: [],
                     isSubmitted: false
                 };
-                  
+
                 if (!userAnswer.isSubmitted) {
                     const index = userAnswer.selected.indexOf(letter);
                     if (index === -1) {
@@ -2063,13 +2112,13 @@
                     } else {
                         userAnswer.selected.splice(index, 1);
                     }
-                      
+
                     currentLibrary.userAnswers[this.data.currentIndex] = userAnswer;
                     this.saveToStorage();
                     this.updateOptionStyles();
                 }
             },
-              
+
             // 更新选项样式
             updateOptionStyles() {
                 const question = this.getCurrentQuestion();
@@ -2079,11 +2128,11 @@
                 const options = this.data.examMode ?
                     document.querySelectorAll('#exam-options .option') :
                     document.querySelectorAll('#options .option');
-              
+
                 options.forEach(option => {
                     option.classList.remove('correct-answer', 'wrong-answer', 'selected', 'exam-selected');
                     const letter = option.querySelector('.option-letter').textContent.trim();
-              
+
                     // 背题模式（保持原有逻辑）
                     if (this.data.mode === 'back') {
                         if (question.答案.includes(letter)) {
@@ -2091,7 +2140,7 @@
                         }
                         return;
                     }
-                     
+
                     // 考试模式 - 只显示选中状态
                     if (this.data.examMode) {
                         if (examAnswer) {
@@ -2103,7 +2152,7 @@
                                     if (userSelected === '对') userSelected = 'A';
                                     else if (userSelected === '错') userSelected = 'B';
                                 }
-                                 
+
                                 if (userSelected === letter) {
                                     option.classList.add('exam-selected');
                                 }
@@ -2117,7 +2166,7 @@
                         }
                         return;
                     }
-              
+
                     // 练习模式（修改后的单选逻辑）
                     if (question.类型 === '单选' || question.类型 === '判断') {
                         // 只有用户已作答时显示正确/错误
@@ -2129,7 +2178,7 @@
                                 if (userSelected === '对') userSelected = 'A';
                                 else if (userSelected === '错') userSelected = 'B';
                             }
-                             
+
                             if (userSelected === letter) {
                                 option.classList.add(userAnswer.isCorrect ? 'correct-answer' : 'wrong-answer');
                             }
@@ -2139,7 +2188,7 @@
                                 if (correctAnswer === '对') correctAnswer = 'A';
                                 else if (correctAnswer === '错') correctAnswer = 'B';
                             }
-                             
+
                             if (correctAnswer === letter) {
                                 option.classList.add('correct-answer');
                             }
@@ -2162,24 +2211,24 @@
                     }
                 });
             },
-  
+
             handleMultiSelectSubmit() {
                 const currentLibrary = this.getCurrentLibrary();
                 const question = this.getCurrentQuestion();
                 let userAnswer = currentLibrary.userAnswers[this.data.currentIndex];
-               
+
                 if (!userAnswer || userAnswer.selected.length === 0) return;
-               
+
                 const correctLetters = [...question.答案].sort().join('');
                 const userLetters = [...userAnswer.selected].sort().join('');
                 userAnswer.isCorrect = correctLetters === userLetters;
                 userAnswer.isSubmitted = true;
-               
+
                 this.saveToStorage();
                 this.updateOptionStyles();
                 this.renderAnswerAndExplanation();
                 this.updatePracticeQuestionNumberStyles();
-               
+
                 // 显示答题结果
                 const resultDiv = document.getElementById('answer-result');
                 if (correctLetters === userLetters) {
@@ -2189,11 +2238,11 @@
                     resultDiv.textContent = `回答错误，你的答案是 ${userLetters}`;
                     resultDiv.style.color = 'var(--wrong-color)';
                 }
-                 
+
                 // 更新统计信息
                 this.updateStatsDisplay();
             },
-                          
+
             // 渲染题目
             renderQuestion() {
                 const question = this.getCurrentQuestion();
@@ -2201,11 +2250,11 @@
                     document.getElementById('exam-options') :
                     document.getElementById('options');
                 optionsContainer.innerHTML = '';
-                  
+
                 const questionElement = this.data.examMode ?
                     document.getElementById('exam-question') :
                     document.getElementById('question');
-                     
+
                 // 添加难度标签
                 let difficultyTag = '';
                 if (question.难度) {
@@ -2213,24 +2262,24 @@
                     if (question.难度 === '简单') difficultyClass = 'difficulty-easy';
                     else if (question.难度 === '中等') difficultyClass = 'difficulty-medium';
                     else if (question.难度 === '困难') difficultyClass = 'difficulty-hard';
-                     
+
                     difficultyTag = `<span class="difficulty-tag ${difficultyClass}">${question.难度}</span>`;
                 }
-                     
+
                 questionElement.innerHTML = `
                     ${question.题干 || '暂无题目'}
                     <span class="question-type">${question.类型 || '未知'}</span>
                     ${difficultyTag}
                     ${question.分值 ? `<span class="question-type">${question.分值}分</span>` : ''}
                 `;
-                  
+
                 // 更新选项字母，支持A-H
                 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
                 const currentLibrary = this.getCurrentLibrary();
                 const userAnswer = currentLibrary.userAnswers[this.data.currentIndex];
                 const isMultiSelect = question.类型 === '多选';
                 const isJudgement = question.类型 === '判断';
-              
+
                 // 判断题特殊处理
                 if (isJudgement) {
                     const optionTrue = document.createElement('button');
@@ -2239,14 +2288,14 @@
                         <span class="option-letter">A</span>
                         <span class="option-text">对</span>
                     `;
-                      
+
                     const optionFalse = document.createElement('button');
                     optionFalse.className = 'option';
                     optionFalse.innerHTML = `
                         <span class="option-letter">B</span>
                         <span class="option-text">错</span>
                     `;
-                      
+
                     if (this.data.mode === 'back') {
                         optionTrue.classList.add('back-mode-option');
                         optionFalse.classList.add('back-mode-option');
@@ -2264,7 +2313,7 @@
                             optionFalse.addEventListener('click', () => this.selectOption('B'));
                         }
                     }
-                      
+
                     optionsContainer.appendChild(optionTrue);
                     optionsContainer.appendChild(optionFalse);
                 } else {
@@ -2278,7 +2327,7 @@
                                 <span class="option-letter">${letter}</span>
                                 <span class="option-text">${question[optionKey]}</span>
                             `;
-                              
+
                             if (this.data.mode === 'back') {
                                 option.classList.add('back-mode-option');
                                 if (question.答案.includes(letter)) {
@@ -2301,12 +2350,12 @@
                                     }
                                 }
                             }
-                              
+
                             optionsContainer.appendChild(option);
                         }
                     });
                 }
-              
+
                 // 练习模式下的多选题提交按钮
                 if (isMultiSelect && this.data.mode === 'practice' && !this.data.examMode) {
                     const submitButton = document.createElement('button');
@@ -2316,9 +2365,9 @@
                     submitButton.addEventListener('click', () => this.handleMultiSelectSubmit());
                     optionsContainer.appendChild(submitButton);
                 }
-              
+
                 this.updateOptionStyles();
-                 
+
                 // 清除答题结果
                 if (this.data.examMode) {
                     document.getElementById('exam-answer-result').textContent = '';
@@ -2326,15 +2375,15 @@
                     document.getElementById('answer-result').textContent = '';
                 }
             },
-             
+
             // 渲染练习错题库题目
             renderPracticeWrongQuestion() {
                 const question = this.getCurrentPracticeWrongQuestion();
                 const optionsContainer = document.getElementById('practice-wrong-options');
                 optionsContainer.innerHTML = '';
-                  
+
                 const questionElement = document.getElementById('practice-wrong-question');
-                     
+
                 // 添加难度标签
                 let difficultyTag = '';
                 if (question.难度) {
@@ -2342,25 +2391,25 @@
                     if (question.难度 === '简单') difficultyClass = 'difficulty-easy';
                     else if (question.难度 === '中等') difficultyClass = 'difficulty-medium';
                     else if (question.难度 === '困难') difficultyClass = 'difficulty-hard';
-                     
+
                     difficultyTag = `<span class="difficulty-tag ${difficultyClass}">${question.难度}</span>`;
                 }
-                     
+
                 questionElement.innerHTML = `
                     ${question.题干 || '暂无题目'}
                     <span class="question-type">${question.类型 || '未知'}</span>
                     ${difficultyTag}
                     ${question.分值 ? `<span class="question-type">${question.分值}分</span>` : ''}
                 `;
-                  
+
                 // 更新选项字母，支持A-H
                 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
                 const isJudgement = question.类型 === '判断';
-                 
+
                 // 更新模式按钮文本
                 document.getElementById('practice-wrong-modeButton').textContent =
                     this.data.practiceWrongMode === 'practice' ? '切换到背题模式' : '切换到练习模式';
-              
+
                 // 判断题特殊处理
                 if (isJudgement) {
                     const optionTrue = document.createElement('button');
@@ -2369,14 +2418,14 @@
                         <span class="option-letter">A</span>
                         <span class="option-text">对</span>
                     `;
-                      
+
                     const optionFalse = document.createElement('button');
                     optionFalse.className = 'option';
                     optionFalse.innerHTML = `
                         <span class="option-letter">B</span>
                         <span class="option-text">错</span>
                     `;
-                      
+
                     if (this.data.practiceWrongMode === 'back') {
                         optionTrue.classList.add('back-mode-option');
                         optionFalse.classList.add('back-mode-option');
@@ -2389,7 +2438,7 @@
                         optionTrue.addEventListener('click', () => this.selectPracticeWrongOption('A'));
                         optionFalse.addEventListener('click', () => this.selectPracticeWrongOption('B'));
                     }
-                      
+
                     optionsContainer.appendChild(optionTrue);
                     optionsContainer.appendChild(optionFalse);
                 } else {
@@ -2403,7 +2452,7 @@
                                 <span class="option-letter">${letter}</span>
                                 <span class="option-text">${question[optionKey]}</span>
                             `;
-                              
+
                             if (this.data.practiceWrongMode === 'back') {
                                 option.classList.add('back-mode-option');
                                 if (question.类型 === '判断') {
@@ -2423,12 +2472,12 @@
                                     option.addEventListener('click', () => this.selectPracticeWrongOption(letter));
                                 }
                             }
-                              
+
                             optionsContainer.appendChild(option);
                         }
                     });
                 }
-                 
+
                 // 练习模式下的多选题提交按钮
                 if (question.类型 === '多选' && this.data.practiceWrongMode === 'practice') {
                     const submitButton = document.createElement('button');
@@ -2438,15 +2487,15 @@
                     submitButton.addEventListener('click', () => this.handlePracticeWrongMultiSelectSubmit());
                     optionsContainer.appendChild(submitButton);
                 }
-                 
+
                 // 显示答案和解析 - 修复：答错时显示答案和解析
                 const library = this.getCurrentLibrary();
                 const userAnswer = library.userAnswers[question.originalIndex];
-                 
+
                 if (this.data.practiceWrongMode === 'back' || (userAnswer && userAnswer.isSubmitted && !userAnswer.isCorrect)) {
                     document.getElementById('practice-wrong-answer-container').classList.remove('hidden');
                     document.getElementById('practice-wrong-explanation-container').classList.remove('hidden');
-                     
+
                     document.getElementById('practice-wrong-correct-answer').textContent =
                         question.类型 === '多选' ? [...question.答案].join(', ') : question.答案;
                     document.getElementById('practice-wrong-explanation').textContent = question.解析 || '暂无解析';
@@ -2454,7 +2503,7 @@
                     document.getElementById('practice-wrong-answer-container').classList.add('hidden');
                     document.getElementById('practice-wrong-explanation-container').classList.add('hidden');
                 }
-                 
+
                 // 显示用户答案
                 const resultDiv = document.getElementById('practice-wrong-answer-result');
                 if (this.data.practiceWrongMode === 'practice') {
@@ -2471,42 +2520,42 @@
                 } else {
                     resultDiv.textContent = '';
                 }
-                 
+
                 // 更新练习错题库选项样式
                 this.updatePracticeWrongOptionStyles();
             },
-             
+
             // 选择练习错题库选项
             selectPracticeWrongOption(optionLetter) {
                 if (this.data.practiceWrongMode !== 'practice') return;
-                 
+
                 const currentQuestion = this.getCurrentPracticeWrongQuestion();
                 const library = this.getCurrentLibrary();
-                 
+
                 // 处理判断题
                 let processedOption = optionLetter;
                 if (currentQuestion.类型 === '判断') {
                     if (optionLetter === 'A') processedOption = '对';
                     else if (optionLetter === 'B') processedOption = '错';
                 }
-                 
+
                 // 为单选和判断立即标记提交状态
                 if (currentQuestion.类型 === '单选' || currentQuestion.类型 === '判断') {
                     const isCorrect = processedOption === currentQuestion.答案;
-                     
+
                     // 记录答题次数
                     this.recordQuestionPractice(currentQuestion.originalIndex, isCorrect);
-                     
+
                     // 更新用户答案
                     library.userAnswers[currentQuestion.originalIndex] = {
                         selected: processedOption,
                         isCorrect: isCorrect,
                         isSubmitted: true
                     };
-                   
+
                     this.saveToStorage();
                     this.updatePracticeWrongOptionStyles();
-                   
+
                     // 显示答题结果
                     const resultDiv = document.getElementById('practice-wrong-answer-result');
                     if (isCorrect) {
@@ -2519,7 +2568,7 @@
                         document.getElementById('practice-wrong-answer-container').classList.remove('hidden');
                         document.getElementById('practice-wrong-explanation-container').classList.remove('hidden');
                     }
-                       
+
                     // 如果连续答对3次，从错题库中移除
                     if (isCorrect) {
                         const correctCount = this.getCorrectCount(currentQuestion.originalIndex);
@@ -2539,7 +2588,7 @@
                     }
                 }
             },
-             
+
             // 练习错题库多选题选项切换
             togglePracticeWrongMultiSelectOption(letter) {
                 const currentQuestion = this.getCurrentPracticeWrongQuestion();
@@ -2549,9 +2598,9 @@
                         isSubmitted: false
                     };
                 }
-                 
+
                 let userAnswer = this.data.practiceWrongMultiSelectAnswers[this.data.practiceWrongCurrentIndex];
-                 
+
                 if (!userAnswer.isSubmitted) {
                     const index = userAnswer.selected.indexOf(letter);
                     if (index === -1) {
@@ -2559,39 +2608,39 @@
                     } else {
                         userAnswer.selected.splice(index, 1);
                     }
-                     
+
                     this.updatePracticeWrongOptionStyles();
                 }
             },
-             
+
             // 处理练习错题库多选题提交
             handlePracticeWrongMultiSelectSubmit() {
                 const currentQuestion = this.getCurrentPracticeWrongQuestion();
                 const library = this.getCurrentLibrary();
                 let userAnswer = this.data.practiceWrongMultiSelectAnswers[this.data.practiceWrongCurrentIndex];
-               
+
                 if (!userAnswer || userAnswer.selected.length === 0) return;
-               
+
                 const correctLetters = [...currentQuestion.答案].sort().join('');
                 const userLetters = [...userAnswer.selected].sort().join('');
                 const isCorrect = correctLetters === userLetters;
-                 
+
                 // 记录答题次数
                 this.recordQuestionPractice(currentQuestion.originalIndex, isCorrect);
-                 
+
                 // 更新用户答案
                 library.userAnswers[currentQuestion.originalIndex] = {
                     selected: userAnswer.selected,
                     isCorrect: isCorrect,
                     isSubmitted: true
                 };
-                 
+
                 userAnswer.isCorrect = isCorrect;
                 userAnswer.isSubmitted = true;
-               
+
                 this.saveToStorage();
                 this.updatePracticeWrongOptionStyles();
-               
+
                 // 显示答题结果
                 const resultDiv = document.getElementById('practice-wrong-answer-result');
                 if (isCorrect) {
@@ -2604,7 +2653,7 @@
                     document.getElementById('practice-wrong-answer-container').classList.remove('hidden');
                     document.getElementById('practice-wrong-explanation-container').classList.remove('hidden');
                 }
-                 
+
                 // 如果连续答对3次，从错题库中移除
                 if (isCorrect) {
                     const correctCount = this.getCorrectCount(currentQuestion.originalIndex);
@@ -2623,7 +2672,7 @@
                     this.updatePracticeWrongSidebar();
                 }
             },
-             
+
             // 更新练习错题库选项样式
             updatePracticeWrongOptionStyles() {
                 const question = this.getCurrentPracticeWrongQuestion();
@@ -2631,11 +2680,11 @@
                 const userAnswer = library.userAnswers[question.originalIndex];
                 const practiceWrongMultiAnswer = this.data.practiceWrongMultiSelectAnswers[this.data.practiceWrongCurrentIndex];
                 const options = document.querySelectorAll('#practice-wrong-options .option');
-                 
+
                 options.forEach(option => {
                     option.classList.remove('correct-answer', 'wrong-answer', 'selected');
                     const letter = option.querySelector('.option-letter').textContent.trim();
-                     
+
                     // 背题模式显示正确答案
                     if (this.data.practiceWrongMode === 'back') {
                         // 判断题特殊处理
@@ -2651,7 +2700,7 @@
                         }
                         return;
                     }
-                     
+
                     // 练习模式显示用户答案
                     if (userAnswer?.isSubmitted) {
                         // 显示正确答案（绿色）
@@ -2665,14 +2714,14 @@
                                 option.classList.add('correct-answer');
                             }
                         }
-                         
+
                         let userSelected = userAnswer.selected;
                         // 对于判断题，需要转换选项
                         if (question.类型 === '判断') {
                             if (userSelected === '对') userSelected = 'A';
                             else if (userSelected === '错') userSelected = 'B';
                         }
-                         
+
                         if (Array.isArray(userSelected)) {
                             if (userSelected.includes(letter) && !question.答案.includes(letter)) {
                                 option.classList.add('wrong-answer');
@@ -2694,15 +2743,15 @@
                     }
                 });
             },
-             
+
             // 渲染考试错题库题目 - 修复后的逻辑
             renderExamWrongQuestion() {
                 const question = this.getCurrentExamWrongQuestion();
                 const optionsContainer = document.getElementById('exam-wrong-options');
                 optionsContainer.innerHTML = '';
-                  
+
                 const questionElement = document.getElementById('exam-wrong-question');
-                     
+
                 // 添加难度标签
                 let difficultyTag = '';
                 if (question.难度) {
@@ -2710,25 +2759,25 @@
                     if (question.难度 === '简单') difficultyClass = 'difficulty-easy';
                     else if (question.难度 === '中等') difficultyClass = 'difficulty-medium';
                     else if (question.难度 === '困难') difficultyClass = 'difficulty-hard';
-                     
+
                     difficultyTag = `<span class="difficulty-tag ${difficultyClass}">${question.难度}</span>`;
                 }
-                     
+
                 questionElement.innerHTML = `
                     ${question.题干 || '暂无题目'}
                     <span class="question-type">${question.类型 || '未知'}</span>
                     ${difficultyTag}
                     ${question.分值 ? `<span class="question-type">${question.分值}分</span>` : ''}
                 `;
-                  
+
                 // 更新选项字母，支持A-H
                 const optionLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
                 const isJudgement = question.类型 === '判断';
-                 
+
                 // 更新模式按钮文本
                 document.getElementById('exam-wrong-modeButton').textContent =
                     this.data.examWrongMode === 'practice' ? '切换到背题模式' : '切换到练习模式';
-              
+
                 // 判断题特殊处理
                 if (isJudgement) {
                     const optionTrue = document.createElement('button');
@@ -2737,14 +2786,14 @@
                         <span class="option-letter">A</span>
                         <span class="option-text">对</span>
                     `;
-                      
+
                     const optionFalse = document.createElement('button');
                     optionFalse.className = 'option';
                     optionFalse.innerHTML = `
                         <span class="option-letter">B</span>
                         <span class="option-text">错</span>
                     `;
-                      
+
                     if (this.data.examWrongMode === 'back') {
                         optionTrue.classList.add('back-mode-option');
                         optionFalse.classList.add('back-mode-option');
@@ -2757,7 +2806,7 @@
                         optionTrue.addEventListener('click', () => this.selectExamWrongOption('A'));
                         optionFalse.addEventListener('click', () => this.selectExamWrongOption('B'));
                     }
-                      
+
                     optionsContainer.appendChild(optionTrue);
                     optionsContainer.appendChild(optionFalse);
                 } else {
@@ -2771,7 +2820,7 @@
                                 <span class="option-letter">${letter}</span>
                                 <span class="option-text">${question[optionKey]}</span>
                             `;
-                              
+
                             if (this.data.examWrongMode === 'back') {
                                 option.classList.add('back-mode-option');
                                 if (question.类型 === '判断') {
@@ -2791,12 +2840,12 @@
                                     option.addEventListener('click', () => this.selectExamWrongOption(letter));
                                 }
                             }
-                              
+
                             optionsContainer.appendChild(option);
                         }
                     });
                 }
-                 
+
                 // 练习模式下的多选题提交按钮
                 if (question.类型 === '多选' && this.data.examWrongMode === 'practice') {
                     const submitButton = document.createElement('button');
@@ -2806,15 +2855,15 @@
                     submitButton.addEventListener('click', () => this.handleExamWrongMultiSelectSubmit());
                     optionsContainer.appendChild(submitButton);
                 }
-                 
+
                 // 显示答案和解析 - 修复：答错时显示答案和解析
                 const library = this.getCurrentLibrary();
                 const userAnswer = library.userAnswers[question.originalIndex];
-                 
+
                 if (this.data.examWrongMode === 'back' || (userAnswer && userAnswer.isSubmitted && !userAnswer.isCorrect)) {
                     document.getElementById('exam-wrong-answer-container').classList.remove('hidden');
                     document.getElementById('exam-wrong-explanation-container').classList.remove('hidden');
-                     
+
                     document.getElementById('exam-wrong-correct-answer').textContent =
                         question.类型 === '多选' ? [...question.答案].join(', ') : question.答案;
                     document.getElementById('exam-wrong-explanation').textContent = question.解析 || '暂无解析';
@@ -2822,7 +2871,7 @@
                     document.getElementById('exam-wrong-answer-container').classList.add('hidden');
                     document.getElementById('exam-wrong-explanation-container').classList.add('hidden');
                 }
-                 
+
                 // 练习模式下显示用户答案（如果有的话）
                 const resultDiv = document.getElementById('exam-wrong-answer-result');
                 if (this.data.examWrongMode === 'practice') {
@@ -2839,42 +2888,42 @@
                 } else {
                     resultDiv.textContent = '';
                 }
-                 
+
                 // 更新考试错题库选项样式
                 this.updateExamWrongOptionStyles();
             },
-             
+
             // 选择考试错题库选项 - 修复后的逻辑
             selectExamWrongOption(optionLetter) {
                 if (this.data.examWrongMode !== 'practice') return;
-                 
+
                 const currentQuestion = this.getCurrentExamWrongQuestion();
                 const library = this.getCurrentLibrary();
-                 
+
                 // 处理判断题
                 let processedOption = optionLetter;
                 if (currentQuestion.类型 === '判断') {
                     if (optionLetter === 'A') processedOption = '对';
                     else if (optionLetter === 'B') processedOption = '错';
                 }
-                 
+
                 // 为单选和判断立即标记提交状态
                 if (currentQuestion.类型 === '单选' || currentQuestion.类型 === '判断') {
                     const isCorrect = processedOption === currentQuestion.答案;
-                     
+
                     // 记录答题次数
                     this.recordQuestionPractice(currentQuestion.originalIndex, isCorrect);
-                     
+
                     // 更新用户答案 - 这里更新的是原始题库的用户答案
                     library.userAnswers[currentQuestion.originalIndex] = {
                         selected: processedOption,
                         isCorrect: isCorrect,
                         isSubmitted: true
                     };
-                   
+
                     this.saveToStorage();
                     this.updateExamWrongOptionStyles();
-                   
+
                     // 显示答题结果
                     const resultDiv = document.getElementById('exam-wrong-answer-result');
                     if (isCorrect) {
@@ -2887,7 +2936,7 @@
                         document.getElementById('exam-wrong-answer-container').classList.remove('hidden');
                         document.getElementById('exam-wrong-explanation-container').classList.remove('hidden');
                     }
-                       
+
                     // 如果连续答对3次，从错题库中移除
                     if (isCorrect) {
                         const correctCount = this.getCorrectCount(currentQuestion.originalIndex);
@@ -2907,7 +2956,7 @@
                     }
                 }
             },
-             
+
             // 考试错题库多选题选项切换
             toggleExamWrongMultiSelectOption(letter) {
                 const currentQuestion = this.getCurrentExamWrongQuestion();
@@ -2917,9 +2966,9 @@
                         isSubmitted: false
                     };
                 }
-                 
+
                 let userAnswer = this.data.examWrongMultiSelectAnswers[this.data.examWrongCurrentIndex];
-                 
+
                 if (!userAnswer.isSubmitted) {
                     const index = userAnswer.selected.indexOf(letter);
                     if (index === -1) {
@@ -2927,39 +2976,39 @@
                     } else {
                         userAnswer.selected.splice(index, 1);
                     }
-                     
+
                     this.updateExamWrongOptionStyles();
                 }
             },
-             
+
             // 处理考试错题库多选题提交 - 修复后的逻辑
             handleExamWrongMultiSelectSubmit() {
                 const currentQuestion = this.getCurrentExamWrongQuestion();
                 const library = this.getCurrentLibrary();
                 let userAnswer = this.data.examWrongMultiSelectAnswers[this.data.examWrongCurrentIndex];
-               
+
                 if (!userAnswer || userAnswer.selected.length === 0) return;
-               
+
                 const correctLetters = [...currentQuestion.答案].sort().join('');
                 const userLetters = [...userAnswer.selected].sort().join('');
                 const isCorrect = correctLetters === userLetters;
-                 
+
                 // 记录答题次数
                 this.recordQuestionPractice(currentQuestion.originalIndex, isCorrect);
-                 
+
                 // 更新用户答案 - 这里更新的是原始题库的用户答案
                 library.userAnswers[currentQuestion.originalIndex] = {
                     selected: userAnswer.selected,
                     isCorrect: isCorrect,
                     isSubmitted: true
                 };
-                 
+
                 userAnswer.isCorrect = isCorrect;
                 userAnswer.isSubmitted = true;
-               
+
                 this.saveToStorage();
                 this.updateExamWrongOptionStyles();
-               
+
                 // 显示答题结果
                 const resultDiv = document.getElementById('exam-wrong-answer-result');
                 if (isCorrect) {
@@ -2972,7 +3021,7 @@
                     document.getElementById('exam-wrong-answer-container').classList.remove('hidden');
                     document.getElementById('exam-wrong-explanation-container').classList.remove('hidden');
                 }
-                 
+
                 // 如果连续答对3次，从错题库中移除
                 if (isCorrect) {
                     const correctCount = this.getCorrectCount(currentQuestion.originalIndex);
@@ -2991,7 +3040,7 @@
                     this.updateExamWrongSidebar();
                 }
             },
-             
+
             // 更新考试错题库选项样式 - 修复后的逻辑
             updateExamWrongOptionStyles() {
                 const question = this.getCurrentExamWrongQuestion();
@@ -2999,11 +3048,11 @@
                 const userAnswer = library.userAnswers[question.originalIndex];
                 const examWrongMultiAnswer = this.data.examWrongMultiSelectAnswers[this.data.examWrongCurrentIndex];
                 const options = document.querySelectorAll('#exam-wrong-options .option');
-                 
+
                 options.forEach(option => {
                     option.classList.remove('correct-answer', 'wrong-answer', 'selected');
                     const letter = option.querySelector('.option-letter').textContent.trim();
-                     
+
                     // 背题模式显示正确答案
                     if (this.data.examWrongMode === 'back') {
                         // 判断题特殊处理
@@ -3019,7 +3068,7 @@
                         }
                         return;
                     }
-                     
+
                     // 练习模式显示用户答案
                     if (userAnswer?.isSubmitted) {
                         // 显示正确答案（绿色）
@@ -3033,14 +3082,14 @@
                                 option.classList.add('correct-answer');
                             }
                         }
-                         
+
                         let userSelected = userAnswer.selected;
                         // 对于判断题，需要转换选项
                         if (question.类型 === '判断') {
                             if (userSelected === '对') userSelected = 'A';
                             else if (userSelected === '错') userSelected = 'B';
                         }
-                         
+
                         if (Array.isArray(userSelected)) {
                             if (userSelected.includes(letter) && !question.答案.includes(letter)) {
                                 option.classList.add('wrong-answer');
@@ -3062,37 +3111,37 @@
                     }
                 });
             },
-             
+
             // 记录题目练习次数
             recordQuestionPractice(questionIndex, isCorrect) {
                 const key = `${this.data.currentLibraryIndex}-${questionIndex}`;
-                 
+
                 if (!this.data.questionPracticeCounts) {
                     this.data.questionPracticeCounts = {};
                 }
                 if (!this.data.correctCounts) {
                     this.data.correctCounts = {};
                 }
-                 
+
                 // 记录总练习次数
                 this.data.questionPracticeCounts[key] = (this.data.questionPracticeCounts[key] || 0) + 1;
-                 
+
                 // 记录连续正确次数
                 if (isCorrect) {
                     this.data.correctCounts[key] = (this.data.correctCounts[key] || 0) + 1;
                 } else {
                     this.data.correctCounts[key] = 0;
                 }
-                 
+
                 this.saveToStorage();
             },
-             
+
             // 获取连续正确次数
             getCorrectCount(questionIndex) {
                 const key = `${this.data.currentLibraryIndex}-${questionIndex}`;
                 return this.data.correctCounts[key] || 0;
             },
-             
+
             // 从练习错题库中移除题目
             removeFromPracticeWrongQuestions(questionIndex) {
                 const index = this.data.practiceWrongQuestions.findIndex(q => q.originalIndex === questionIndex);
@@ -3105,7 +3154,7 @@
                     alert('此题已连续答对3次，已从练习错题库中移除！');
                 }
             },
-             
+
             // 从考试错题库中移除题目 - 修复后的逻辑
             removeFromExamWrongQuestions(questionIndex) {
                 const index = this.data.examWrongQuestions.findIndex(q => q.originalIndex === questionIndex);
@@ -3118,29 +3167,29 @@
                     alert('此题已连续答对3次，已从考试错题库中移除！');
                 }
             },
-  
+
             // 渲染答案和解析
             renderAnswerAndExplanation() {
                 if (this.data.examMode) return;
-                 
+
                 const question = this.getCurrentQuestion();
                 const library = this.getCurrentLibrary();
                 const userAnswer = library.userAnswers[this.data.currentIndex];
-                  
+
                 const shouldHide = this.data.mode === 'practice' &&
-                                 ((question.类型 === '多选' && !userAnswer?.isSubmitted) ||
-                                  ((question.类型 === '单选' || question.类型 === '判断') && !userAnswer));
-              
+                    ((question.类型 === '多选' && !userAnswer?.isSubmitted) ||
+                        ((question.类型 === '单选' || question.类型 === '判断') && !userAnswer));
+
                 document.getElementById('answer-container').classList.toggle('hidden', shouldHide);
                 document.getElementById('explanation-container').classList.toggle('hidden', shouldHide);
-              
+
                 if (!shouldHide) {
                     document.getElementById('correct-answer').textContent =
                         question.类型 === '多选' ? [...question.答案].join(', ') : question.答案;
                     document.getElementById('explanation').textContent = question.解析 || '暂无解析';
                 }
             },
-              
+
             // 更新UI
             updateUI() {
                 if (this.data.examMode) {
@@ -3156,7 +3205,7 @@
                     this.updatePracticeQuestionNumberStyles();
                 }
             },
-              
+
             // 更新考试UI
             updateExamUI() {
                 this.updateLibraryList();
@@ -3166,7 +3215,7 @@
                 this.updateExamButtonStates();
                 this.updateQuestionNumberStyles();
             },
-              
+
             // 更新练习错题库UI
             updatePracticeWrongUI() {
                 this.updatePracticeWrongProgress();
@@ -3175,7 +3224,7 @@
                 this.updatePracticeWrongButtonStates();
                 this.updatePracticeWrongQuestionNumberStyles();
             },
-              
+
             // 更新考试错题库UI
             updateExamWrongUI() {
                 this.updateExamWrongProgress();
@@ -3184,12 +3233,12 @@
                 this.updateExamWrongButtonStates();
                 this.updateExamWrongQuestionNumberStyles();
             },
-              
+
             // 更新题库列表
             updateLibraryList() {
                 const libraryList = document.getElementById('library-list');
                 libraryList.innerHTML = '';
-                  
+
                 this.data.libraries.forEach((library, index) => {
                     const libraryItem = document.createElement('div');
                     libraryItem.className = 'library-item';
@@ -3204,18 +3253,18 @@
                     libraryList.appendChild(libraryItem);
                 });
             },
-              
+
             // 更新进度条
             updateProgress() {
                 const library = this.getCurrentLibrary();
                 const totalQuestions = library.questions.length;
-                     
+
                 const progress = totalQuestions > 0
                     ? ((this.data.currentIndex + 1) / totalQuestions) * 100
                     : 0;
                 document.getElementById('progress').style.width = `${progress}%`;
             },
-              
+
             // 更新考试进度条
             updateExamProgress() {
                 const progress = this.data.examQuestions.length > 0
@@ -3223,7 +3272,7 @@
                     : 0;
                 document.getElementById('exam-progress').style.width = `${progress}%`;
             },
-              
+
             // 更新练习错题库进度条
             updatePracticeWrongProgress() {
                 const progress = this.data.practiceWrongQuestions.length > 0
@@ -3231,7 +3280,7 @@
                     : 0;
                 document.getElementById('practice-wrong-progress').style.width = `${progress}%`;
             },
-              
+
             // 更新考试错题库进度条
             updateExamWrongProgress() {
                 const progress = this.data.examWrongQuestions.length > 0
@@ -3239,17 +3288,17 @@
                     : 0;
                 document.getElementById('exam-wrong-progress').style.width = `${progress}%`;
             },
-              
+
             // 更新状态信息
             updateStatusInfo() {
                 const library = this.getCurrentLibrary();
                 const totalQuestions = library.questions.length;
-                     
+
                 if (totalQuestions === 0) {
                     document.getElementById('status-info').textContent = '当前题库没有题目';
                     return;
                 }
-                  
+
                 document.getElementById('status-info').innerHTML = `
                     <span>共 ${totalQuestions} 题</span>
                     <span>第 ${this.data.currentIndex + 1} 题</span>
@@ -3257,139 +3306,139 @@
                 `;
                 document.getElementById('modeButton').textContent = this.data.mode === 'practice' ? '切换到背题模式' : '切换到练习模式';
             },
-              
+
             // 更新考试状态信息
             updateExamStatusInfo() {
                 if (this.data.examQuestions.length === 0) {
                     document.getElementById('exam-status-info').textContent = '当前题库没有足够题目生成考试';
                     return;
                 }
-                  
+
                 const questionType = this.data.currentIndex < 100 ? '单选题' :
-                                   this.data.currentIndex < 120 ? '多选题' : '判断题';
-                  
+                    this.data.currentIndex < 120 ? '多选题' : '判断题';
+
                 document.getElementById('exam-status-info').innerHTML = `
                     <span>共 150 题</span>
                     <span>第 ${this.data.currentIndex + 1} 题 (${questionType})</span>
                     <span>考试模式</span>
                 `;
             },
-              
+
             // 更新练习错题库状态信息
             updatePracticeWrongStatusInfo() {
                 if (this.data.practiceWrongQuestions.length === 0) {
                     document.getElementById('practice-wrong-status-info').textContent = '当前没有练习错题';
                     return;
                 }
-                  
+
                 document.getElementById('practice-wrong-status-info').innerHTML = `
                     <span>共 ${this.data.practiceWrongQuestions.length} 题</span>
                     <span>第 ${this.data.practiceWrongCurrentIndex + 1} 题</span>
                     <span>${this.data.practiceWrongMode === 'practice' ? '练习模式' : '背题模式'}</span>
                 `;
             },
-              
+
             // 更新考试错题库状态信息
             updateExamWrongStatusInfo() {
                 if (this.data.examWrongQuestions.length === 0) {
                     document.getElementById('exam-wrong-status-info').textContent = '当前没有考试错题';
                     return;
                 }
-                  
+
                 document.getElementById('exam-wrong-status-info').innerHTML = `
                     <span>共 ${this.data.examWrongQuestions.length} 题</span>
                     <span>第 ${this.data.examWrongCurrentIndex + 1} 题</span>
                     <span>${this.data.examWrongMode === 'practice' ? '练习模式' : '背题模式'}</span>
                 `;
             },
-              
+
             // 更新按钮状态
             updateButtonStates() {
                 const library = this.getCurrentLibrary();
                 const totalQuestions = library.questions.length;
-                     
+
                 const hasQuestions = totalQuestions > 0;
-                  
+
                 document.getElementById('prevButton').disabled = this.data.currentIndex === 0 || !hasQuestions;
                 document.getElementById('nextButton').disabled =
                     this.data.currentIndex === totalQuestions - 1 || !hasQuestions;
                 document.getElementById('modeButton').disabled = !hasQuestions;
             },
-              
+
             // 更新考试按钮状态
             updateExamButtonStates() {
                 const hasQuestions = this.data.examQuestions.length > 0;
-                  
+
                 document.getElementById('exam-prevButton').disabled = this.data.currentIndex === 0 || !hasQuestions;
                 document.getElementById('exam-nextButton').disabled =
                     this.data.currentIndex === this.data.examQuestions.length - 1 || !hasQuestions;
             },
-              
+
             // 更新练习错题库按钮状态
             updatePracticeWrongButtonStates() {
                 const hasQuestions = this.data.practiceWrongQuestions.length > 0;
-                  
+
                 document.getElementById('practice-wrong-prevButton').disabled = this.data.practiceWrongCurrentIndex === 0 || !hasQuestions;
                 document.getElementById('practice-wrong-nextButton').disabled =
                     this.data.practiceWrongCurrentIndex === this.data.practiceWrongQuestions.length - 1 || !hasQuestions;
             },
-              
+
             // 更新考试错题库按钮状态
             updateExamWrongButtonStates() {
                 const hasQuestions = this.data.examWrongQuestions.length > 0;
-                  
+
                 document.getElementById('exam-wrong-prevButton').disabled = this.data.examWrongCurrentIndex === 0 || !hasQuestions;
                 document.getElementById('exam-wrong-nextButton').disabled =
                     this.data.examWrongCurrentIndex === this.data.examWrongQuestions.length - 1 || !hasQuestions;
             },
-              
+
             // 重置题库
             resetLibrary() {
                 if (this.data.libraries.length === 0) {
                     alert('没有可重置的题库');
                     return;
                 }
-                  
+
                 const currentLibrary = this.getCurrentLibrary();
                 if (!currentLibrary.name || currentLibrary.questions.length === 0) {
                     alert('当前题库没有题目可重置');
                     return;
                 }
-                  
+
                 if (confirm(`确定要重置题库 "${currentLibrary.name}" 吗？这将清除所有用户答案、练习错题库和考试错题库并恢复到初始状态。`)) {
                     const originalLibrary = JSON.parse(JSON.stringify(this.data.libraries[this.data.currentLibraryIndex]));
                     delete originalLibrary.userAnswers;
                     delete originalLibrary.originalOrder;
-                      
+
                     this.data.libraries[this.data.currentLibraryIndex] = {
                         name: originalLibrary.name,
                         questions: JSON.parse(JSON.stringify(originalLibrary.questions)),
                         userAnswers: {},
                         originalOrder: []
                     };
-                      
+
                     // 重置练习错题库
                     this.data.practiceWrongQuestions = [];
                     this.data.practiceWrongCurrentIndex = 0;
-                     
+
                     // 重置考试错题库
                     this.data.examWrongQuestions = [];
                     this.data.examWrongCurrentIndex = 0;
-                     
+
                     // 重置考试历史记录中的错题数据
                     this.data.examHistory.forEach(record => {
                         if (record.wrongQuestions) {
                             record.wrongQuestions = [];
                         }
                     });
-                      
+
                     this.data.currentIndex = 0;
                     this.data.mode = 'practice';
                     this.data.isShuffled = false;
-                      
+
                     this.saveToStorage();
                     this.updateUI();
-                     
+
                     // 如果当前在错题库标签页，刷新显示
                     if (this.data.currentTab === 'practice-wrong') {
                         this.updatePracticeWrongQuestions();
@@ -3398,21 +3447,21 @@
                         this.updateExamWrongQuestions();
                         this.updateExamWrongUI();
                     }
-                     
+
                     alert('题库已重置，包括练习错题库和考试错题库');
                 }
             },
-              
+
             // 更新统计信息显示
             updateStatsDisplay() {
                 const library = this.getCurrentLibrary();
                 if (library.questions.length === 0) {
                     return;
                 }
-                 
+
                 let correctCount = 0;
                 let answeredCount = 0;
-                 
+
                 Object.values(library.userAnswers).forEach((answer) => {
                     if (answer.isSubmitted) {
                         answeredCount++;
@@ -3421,23 +3470,23 @@
                         }
                     }
                 });
-                 
+
                 const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
             },
-             
+
             // 更新考试统计
             updateExamStats() {
                 const historyList = document.getElementById('exam-history-list');
                 historyList.innerHTML = '';
-                 
+
                 if (this.data.examHistory.length === 0) {
                     historyList.innerHTML = '<p style="text-align: center; padding: 20px; color: #666;">暂无考试记录</p>';
                     return;
                 }
-                 
+
                 // 显示最近5次考试记录
                 const recentHistory = this.data.examHistory.slice(-5).reverse();
-                 
+
                 recentHistory.forEach((record, index) => {
                     const recordElement = document.createElement('div');
                     recordElement.className = 'wrong-question-item';
@@ -3454,28 +3503,28 @@
                     historyList.appendChild(recordElement);
                 });
             },
-             
+
             // 更新练习错题库
             updatePracticeWrongQuestions() {
                 // 这个方法现在用于初始化练习错题库数据
                 this.generatePracticeWrongQuestions();
             },
-             
+
             // 更新考试错题库
             updateExamWrongQuestions() {
                 // 这个方法现在用于初始化考试错题库数据
                 this.generateExamWrongQuestions();
             },
-             
+
             // 开始考试计时器
             startExamTimer() {
                 this.data.examTimeLeft = 90 * 60; // 90分钟
                 this.updateExamTimerDisplay();
-                 
+
                 this.data.examTimer = setInterval(() => {
                     this.data.examTimeLeft--;
                     this.updateExamTimerDisplay();
-                     
+
                     if (this.data.examTimeLeft <= 0) {
                         this.stopExamTimer();
                         alert('考试时间已到，系统将自动提交试卷！');
@@ -3483,7 +3532,7 @@
                     }
                 }, 1000);
             },
-             
+
             // 停止考试计时器
             stopExamTimer() {
                 if (this.data.examTimer) {
@@ -3491,7 +3540,7 @@
                     this.data.examTimer = null;
                 }
             },
-             
+
             // 更新考试计时器显示
             updateExamTimerDisplay() {
                 const minutes = Math.floor(this.data.examTimeLeft / 60);
@@ -3499,32 +3548,32 @@
                 document.getElementById('exam-timer').textContent =
                     `剩余时间: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             },
-             
+
             // 提交考试
             submitExam() {
                 this.stopExamTimer();
-                 
+
                 const totalQuestions = this.data.examQuestions.length;
                 const answeredQuestions = Object.keys(this.data.examAnswers).length;
-                 
+
                 if (answeredQuestions < totalQuestions) {
                     if (!confirm(`您还有 ${totalQuestions - answeredQuestions} 题未作答，确定要提交吗？`)) {
                         this.startExamTimer();
                         return;
                     }
                 }
-                 
+
                 let finalScore = 0;
                 let singleScore = 0;
                 let multiScore = 0;
                 let judgeScore = 0;
                 let wrongQuestions = [];
-                 
+
                 this.data.examQuestions.forEach((question, index) => {
                     const userAnswer = this.data.examAnswers[index];
                     if (userAnswer) {
                         let isCorrect = false;
-                         
+
                         if (question.类型 === '单选' || question.类型 === '判断') {
                             isCorrect = userAnswer.selected === question.答案;
                         } else if (question.类型 === '多选') {
@@ -3532,11 +3581,11 @@
                             const userLetters = [...userAnswer.selected].sort().join('');
                             isCorrect = correctLetters === userLetters;
                         }
-                         
+
                         if (isCorrect) {
                             const score = question.分值 || this.getQuestionScore(question.类型);
                             finalScore += score;
-                             
+
                             if (question.类型 === '单选') singleScore += score;
                             else if (question.类型 === '多选') multiScore += score;
                             else if (question.类型 === '判断') judgeScore += score;
@@ -3549,12 +3598,12 @@
                         }
                     }
                 });
-                 
+
                 const isPassed = finalScore >= 60;
                 const resultText = isPassed ? '恭喜您通过考试！' : '很遗憾，您未通过考试。';
-                 
+
                 alert(`考试结束！\n\n${resultText}\n\n得分: ${finalScore}/100\n单选题得分: ${singleScore}/50\n多选题得分: ${multiScore}/20\n判断题得分: ${judgeScore}/30\n\n${isPassed ? '&#127881; 恭喜您通过考试！' : '&#128532; 请继续努力！'}`);
-                 
+
                 this.data.examHistory.push({
                     date: new Date().toLocaleString(),
                     score: finalScore,
@@ -3564,45 +3613,45 @@
                     isPassed: isPassed,
                     wrongQuestions: wrongQuestions
                 });
-                 
+
                 this.saveToStorage();
-                 
+
                 // 考试结束后初始化考试模式题库
                 this.data.examQuestions = [];
                 this.data.examAnswers = {};
                 this.data.examScore = 0;
                 this.data.examStarted = false;
-                 
+
                 this.exitExamMode();
                 this.switchTab('practice');
                 this.updateUI();
             },
-             
+
             // 从本地存储加载数据
             loadFromStorage() {
                 const savedData = localStorage.getItem('quizData');
                 if (savedData) {
                     const parsedData = JSON.parse(savedData);
-                    this.data = {...this.data, ...parsedData};
+                    this.data = { ...this.data, ...parsedData };
                 }
-                  
+
                 if (!this.data.libraries) {
                     this.data.libraries = [];
                     this.data.currentLibraryIndex = 0;
                 }
-                 
+
                 if (!this.data.examHistory) {
                     this.data.examHistory = [];
                 }
-                 
+
                 if (!this.data.questionFontSize) {
                     this.data.questionFontSize = 12;
                 }
-                 
+
                 if (!this.data.optionFontSize) {
                     this.data.optionFontSize = 12;
                 }
-                 
+
                 if (!this.data.questionOrders) {
                     this.data.questionOrders = {
                         single: 'sequential',
@@ -3610,42 +3659,43 @@
                         judge: 'sequential'
                     };
                 }
-                 
+
                 if (!this.data.practiceWrongMode) {
                     this.data.practiceWrongMode = 'practice';
                 }
-                 
+
                 if (!this.data.examWrongMode) {
                     this.data.examWrongMode = 'practice';
                 }
-                 
+
                 if (!this.data.questionPracticeCounts) {
                     this.data.questionPracticeCounts = {};
                 }
-                 
+
                 if (!this.data.correctCounts) {
                     this.data.correctCounts = {};
                 }
-                 
+
                 if (!this.data.practiceWrongMultiSelectAnswers) {
                     this.data.practiceWrongMultiSelectAnswers = {};
                 }
-                 
+
                 if (!this.data.examWrongMultiSelectAnswers) {
                     this.data.examWrongMultiSelectAnswers = {};
                 }
             },
-              
+
             // 保存数据到本地存储
             saveToStorage() {
                 localStorage.setItem('quizData', JSON.stringify(this.data));
             }
         };
- 
+
         // 初始化应用
         document.addEventListener('DOMContentLoaded', () => {
             quizApp.init();
         });
     </script>
 </body>
+
 </html>
