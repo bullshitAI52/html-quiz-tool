@@ -1717,27 +1717,7 @@
 
                 // 删除当前题库
                 document.getElementById('deleteLibraryButton').addEventListener('click', () => {
-                    if (this.data.libraries.length === 0) {
-                        alert('没有可删除的题库');
-                        return;
-                    }
-
-                    if (confirm(`确定要删除题库 "${this.getCurrentLibrary().name}" 吗？`)) {
-                        this.data.libraries.splice(this.data.currentLibraryIndex, 1);
-
-                        if (this.data.currentLibraryIndex >= this.data.libraries.length) {
-                            this.data.currentLibraryIndex = Math.max(0, this.data.libraries.length - 1);
-                        }
-
-                        if (this.data.libraries.length === 0) {
-                            this.data.currentIndex = 0;
-                            this.data.mode = 'practice';
-                            this.data.isShuffled = false;
-                        }
-
-                        this.saveToStorage();
-                        this.updateUI();
-                    }
+                    this.deleteCurrentLibrary();
                 });
 
                 // 切换模式
@@ -3416,6 +3396,49 @@
             },
 
             // 重置题库
+            // 删除当前题库
+            deleteCurrentLibrary() {
+                if (this.data.libraries.length === 0) {
+                    alert('没有可删除的题库');
+                    return;
+                }
+
+                const currentLib = this.getCurrentLibrary();
+                if (confirm(`确定要删除题库 "${currentLib.name}" 吗？此操作无法撤销。`)) {
+                    // 删除
+                    this.data.libraries.splice(this.data.currentLibraryIndex, 1);
+
+                    // 调整索引
+                    if (this.data.currentLibraryIndex >= this.data.libraries.length) {
+                        this.data.currentLibraryIndex = Math.max(0, this.data.libraries.length - 1);
+                    }
+
+                    // 如果删除后没有题库了，重置部分状态
+                    if (this.data.libraries.length === 0) {
+                        this.data.currentLibraryId = null;
+                        this.data.currentIndex = 0;
+                        this.data.mode = 'practice';
+                        this.data.isShuffled = false;
+
+                        // 清空相关错题集
+                        this.data.practiceWrongQuestions = [];
+                        this.data.practiceWrongCurrentIndex = 0;
+                        this.data.examWrongQuestions = [];
+                        this.data.examWrongCurrentIndex = 0;
+                        this.data.examHistory = [];
+                    }
+
+                    this.saveToStorage();
+                    this.updateUI();
+
+                    if (this.data.libraries.length === 0) {
+                        alert('已删除题库。当前无可用题库，请导入。');
+                    } else {
+                        alert(`已删除题库 "${currentLib.name}"。`);
+                    }
+                }
+            },
+
             // 重置题库 - 彻底清空
             resetLibrary() {
                 if (confirm('确定要清空所有题库并恢复到初始状态吗？此操作无法撤销。')) {
