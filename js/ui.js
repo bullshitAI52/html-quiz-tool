@@ -249,15 +249,24 @@ export function updateOptionStyles() {
                     if (answer.selected === checkVal) option.classList.add('selected');
                 }
             }
-        } else if (state.mode === 'practice') {
+        } else if (state.mode === 'practice' || state.mode === 'back') {
             const lib = getCurrentLibrary();
             const answer = lib.userAnswers[state.currentIndex];
 
-            // Temporary multi-select state
+            // Back Mode: Always highlight correct answer
+            if (state.mode === 'back') {
+                let val = letter;
+                if (question.类型 === '判断') val = (letter === 'A') ? '对' : '错';
+
+                if (question.类型 === '多选') {
+                    if (question.答案.includes(letter)) option.classList.add('correct-answer');
+                } else {
+                    if (val === question.答案) option.classList.add('correct-answer');
+                }
+            }
+
+            // User Answer Selection (Temporary or Submitted)
             if (question.类型 === '多选' && !answer?.isSubmitted) {
-                // Check handlers? Logic.js should store temp state?
-                // Logic.js `toggleMultiSelectOption` updates `library.userAnswers` directly even before submit.
-                // So we check `answer.selected`.
                 if (answer && answer.selected.includes(letter)) {
                     option.classList.add('selected');
                 }
@@ -267,7 +276,6 @@ export function updateOptionStyles() {
                 let val = letter;
                 if (question.类型 === '判断') val = (letter === 'A') ? '对' : '错';
 
-                // Correct logic
                 if (question.类型 === '多选') {
                     if (question.答案.includes(letter)) option.classList.add('correct-answer');
                     if (answer.selected.includes(letter) && !question.答案.includes(letter)) option.classList.add('wrong-answer');

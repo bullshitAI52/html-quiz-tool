@@ -154,6 +154,7 @@ window.quizApp = {
 
         // Mode Toggles
         document.getElementById('modeButton')?.addEventListener('click', () => {
+            // alert('Mode button clicked'); // Debug
             state.mode = state.mode === 'practice' ? 'back' : 'practice';
             Storage.saveToStorage();
             UI.updateUI();
