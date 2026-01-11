@@ -5,7 +5,6 @@ import * as Storage from './storage.js';
 
 // Debug check
 console.log('App.js loaded');
-// alert('App.js loaded - Debug Mode'); // Enable if needed, but let's rely on click alert first.
 
 window.quizApp = {
     init() {
@@ -154,7 +153,6 @@ window.quizApp = {
 
         // Mode Toggles
         document.getElementById('modeButton')?.addEventListener('click', () => {
-            // alert('Mode button clicked'); // Debug
             state.mode = state.mode === 'practice' ? 'back' : 'practice';
             Storage.saveToStorage();
             UI.updateUI();
@@ -172,7 +170,6 @@ window.quizApp = {
 
         // Import
         document.getElementById('importButton')?.addEventListener('click', () => {
-            // alert('Import button clicked'); // Debug
             const fileInput = document.getElementById('fileInput');
             if (fileInput) fileInput.click();
             else alert('Error: File input element not found!');
@@ -181,8 +178,6 @@ window.quizApp = {
         document.getElementById('fileInput')?.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
-
-            // alert('File selected: ' + file.name); // Debug
 
             if (!window.XLSX) {
                 alert('Error: XLSX library not loaded. Please check your internet connection.');

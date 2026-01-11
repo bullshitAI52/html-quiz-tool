@@ -67,7 +67,7 @@ export function updateUI() {
         modeBtn.className = state.mode === 'back' ? 'button button-primary' : 'button button-warning';
     }
 
-    // Tabs visibility
+
     // Tabs visibility
     document.getElementById('practice-tab').classList.toggle('hidden', state.currentTab !== 'practice');
     document.getElementById('exam-tab').classList.toggle('hidden', state.currentTab !== 'exam');
