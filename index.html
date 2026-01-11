@@ -75,9 +75,18 @@
 
                 <div id="practice-content">
                     <div id="progress-container">
-                        <div id="status-info"></div>
+                        <div id="status-info">
+                            <span>总题数: <strong id="stats-total">0</strong></span> |
+                            <span>已答: <strong id="stats-answered">0</strong></span> |
+                            <span>正确率: <strong id="stats-accuracy">0%</strong></span>
+                        </div>
                         <div id="progress-bar">
-                            <div id="progress"></div>
+                            <div id="progress"
+                                style="position: relative; background: #4CAF50; height: 100%; transition: width 0.3s;">
+                                <span id="progress-text"
+                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: white; font-size: 12px;">0/0</span>
+                            </div>
+                            <div id="progress-fill" style="display: none;"></div>
                         </div>
                     </div>
 
