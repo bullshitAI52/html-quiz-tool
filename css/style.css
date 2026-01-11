@@ -1,0 +1,791 @@
+        :root {
+            --correct-color: #4CAF50;
+            --wrong-color: #f44336;
+            --primary-color: #2196F3;
+            --warning-color: #FF9800;
+            --success-color: #4CAF50;
+            --info-color: #2196F3;
+            --question-font-size: 12px;
+            --option-font-size: 12px;
+
+            /* Theme Variables - Light Mode Default */
+            --bg-color: #f5f5f5;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            --item-hover-bg: #e0e0e0;
+            --header-bg: linear-gradient(135deg, #333, #555);
+        }
+
+        /* Dark Mode Overrides */
+        .dark-mode {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --item-hover-bg: #333333;
+            --header-bg: linear-gradient(135deg, #000, #222);
+            --light-bg: #2d2d2d;
+            /* Replaces old light-bg usage where appropriate */
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: var(--question-font-size);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #app {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--container-bg);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            min-height: 100vh;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+
+        #header {
+            background: var(--header-bg);
+            color: white;
+            padding: 7px 10px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        /* 全局设置栏 */
+        #global-settings {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        #library-manager {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #library-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .library-item {
+            padding: 8px 15px;
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .library-item:hover {
+            background-color: var(--item-hover-bg);
+        }
+
+        .library-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .library-count {
+            background-color: rgba(128, 128, 128, 0.3);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        #progress-container {
+            margin-bottom: 20px;
+        }
+
+        #progress-bar {
+            height: 12px;
+            background-color: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        #progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #64b5f6);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 6px;
+        }
+
+        #question-container {
+            background-color: var(--container-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        #question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .question-type {
+            display: inline-block;
+            background-color: var(--info-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .difficulty-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .difficulty-easy {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .difficulty-medium {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        .difficulty-hard {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            padding: 6px 15px;
+            /* 高度缩小50% */
+            margin: 4px 0;
+            /* 间距缩小50% */
+            background-color: var(--bg-color);
+            border: none;
+            border-left: 4px solid transparent;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background-color: var(--item-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-letter {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background-color: var(--border-color);
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+            color: #555;
+        }
+
+        /* 正确答案样式 - 绿色 */
+        .correct-answer {
+            background-color: #e8f5e9 !important;
+            border-left-color: var(--correct-color) !important;
+            color: #2e7d32;
+        }
+
+        .correct-answer .option-letter {
+            background-color: var(--correct-color);
+            color: white;
+        }
+
+        /* 用户选择的错误答案 - 红色 */
+        .wrong-answer {
+            background-color: #ffebee !important;
+            border-left-color: var(--wrong-color) !important;
+            color: #c62828;
+        }
+
+        .wrong-answer .option-letter {
+            background-color: var(--wrong-color);
+            color: white;
+        }
+
+        /* 背题模式下的选项样式 */
+        .back-mode-option {
+            background-color: var(--container-bg);
+            cursor: default;
+        }
+
+        #answer-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--correct-color);
+        }
+
+        #explanation-container {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(33, 150, 243, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .button-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .button-danger {
+            background-color: var(--wrong-color);
+            color: white;
+        }
+
+        .button-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        #navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 45px;
+        }
+
+        #nav-buttons {
+            display: flex;
+            gap: 45px;
+        }
+
+        #font-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #font-type-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-left: 15px;
+        }
+
+        .font-type-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .font-type-label {
+            font-size: 0.8rem;
+            min-width: 60px;
+        }
+
+        #status-info {
+            margin-bottom: 15px;
+            font-size: 14px;
+            /* 固定为14px，不受字体控制影响 */
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            width: 60px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* 多选选中状态 */
+        .selected {
+            background-color: rgba(255, 152, 0, 0.1) !important;
+            border-left: 4px solid var(--warning-color) !important;
+        }
+
+        .selected .option-letter {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        /* 字体大小控制 */
+        #question-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #font-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background-color: var(--bg-color);
+            padding: 3px 6px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        #font-size-display {
+            min-width: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* 统计卡片 */
+        .stats-card {
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-card.correct .value {
+            color: var(--correct-color);
+        }
+
+        .stat-card.wrong .value {
+            color: var(--wrong-color);
+        }
+
+        .stat-card.answered .value {
+            color: var(--primary-color);
+        }
+
+        /* 标签页样式 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .tab:not(.active) {
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        /* 练习和考试模式选项卡特殊样式 */
+        .tab[data-tab="practice"]:not(.active),
+        .tab[data-tab="exam"]:not(.active) {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 错题列表 */
+        .wrong-questions-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .wrong-question-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .wrong-question-item:hover {
+            background-color: var(--light-bg);
+        }
+
+        /* 考试模式 */
+        #exam-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #exam-score {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        #exam-timer {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        /* 考试模式题目容器 */
+        #exam-question-container {
+            background-color: var(--container-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        #exam-question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* 考试模式控制按钮 */
+        #exam-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 考试模式选中状态 */
+        .exam-selected {
+            background-color: rgba(76, 175, 80, 0.1) !important;
+            border-left: 4px solid var(--correct-color) !important;
+        }
+
+        .exam-selected .option-letter {
+            background-color: var(--correct-color);
+            color: white;
+        }
+
+        /* 考试模式和练习模式布局 */
+        #exam-layout,
+        #practice-layout,
+        #practice-wrong-layout,
+        #exam-wrong-layout {
+            display: flex;
+            gap: 20px;
+        }
+
+        #exam-sidebar,
+        #practice-sidebar,
+        #practice-wrong-sidebar,
+        #exam-wrong-sidebar {
+            width: 190px;
+            /* 放大25% */
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            height: 600px;
+            overflow-y: auto;
+        }
+
+        #exam-content,
+        #practice-content,
+        #practice-wrong-content,
+        #exam-wrong-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .question-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+            /* 放大25% */
+            gap: 5px;
+        }
+
+        .question-number {
+            width: 30px;
+            /* 放大25% */
+            height: 30px;
+            /* 放大25% */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .question-number:hover {
+            background-color: var(--item-hover-bg);
+        }
+
+        .question-number.current {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .question-number.answered {
+            background-color: var(--correct-color);
+            color: white;
+            border-color: var(--correct-color);
+        }
+
+        .question-number.wrong {
+            background-color: var(--wrong-color);
+            color: white;
+            border-color: var(--wrong-color);
+        }
+
+        /* 练习模式导航 */
+        #practice-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--container-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        #exam-navigation,
+        #practice-wrong-navigation,
+        #exam-wrong-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* 错题库题干加粗 */
+        #practice-wrong-question,
+        #exam-wrong-question {
+            font-weight: bold;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            #app {
+                padding: 15px;
+            }
+
+            #exam-layout,
+            #practice-layout,
+            #practice-wrong-layout,
+            #exam-wrong-layout {
+                flex-direction: column;
+            }
+
+            #exam-sidebar,
+            #practice-sidebar,
+            #practice-wrong-sidebar,
+            #exam-wrong-sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+                order: 2;
+            }
+
+            #exam-content,
+            #practice-content,
+            #practice-wrong-content,
+            #exam-wrong-content {
+                order: 1;
+            }
+
+            #global-settings {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .tabs {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #app {
+                padding: 10px;
+            }
+
+            #header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            #navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #question-controls,
+            #exam-controls {
+                position: static;
+                margin-bottom: 15px;
+                justify-content: flex-end;
+            }
+
+            .question-grid {
+                grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
+            }
+
+            .question-number {
+                width: 25px;
+                height: 25px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            #library-manager {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            #navigation {
+                gap: 30px;
+            }
+        }
